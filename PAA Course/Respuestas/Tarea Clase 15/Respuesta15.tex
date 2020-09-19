@@ -1,0 +1,92 @@
+\documentclass[12pt,letterpaper]{report}
+\usepackage{graphicx}
+\usepackage{scrextend}
+\usepackage{vmargin}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage{float}
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage[usenames]{color}
+\parindent=0mm
+\pagestyle{empty}
+\definecolor{miorange}{rgb}{0.91, 0.43, 0.0}
+\begin{document}
+\setmargins{2.5cm}      
+{1.5cm}                     
+{2cm}  
+{24cm}                    
+{10pt}                          
+{1cm}                          
+{0pt}                             
+{2cm}
+\begin{flushright}
+\today
+\end{flushright}
+\vspace{-1.75cm}
+\section*{Tarea Clase 15}
+\subsection*{Resuelva los siguientes ejercicios:}
+\begin{enumerate}
+    \item  Un dado está trucado, de forma que las probabilidades de obtener las distintas caras son proporcionales a los números de estas. Hallar:
+    \begin{enumerate}
+    \item La probabilidad de obtener el 6 en un lanzamiento\\
+    Como se trata de un dado trucado, la probabilidad de cada numero es diferente, en este caso p=6/21, ya que la probabilidad general es P=1/21, esto se obtuvo sumando p+2p+3p+...+6p=1
+    \item La probabilidad de conseguir un número impar en un lanzamiento\\
+    La respuesta seria la siguiente:
+    \begin{equation*}
+        (1+3+5)*1/21= 9/21
+    \end{equation*}
+    \end{enumerate}
+    \item Se lanzan dos dados al aire y se anota la suma de los puntos obtenidos. Se pide:
+    \begin{enumerate}
+    \item La probabilidad de que salga el 7\\
+    Las formas en que nos salga 7 son: [(6,1),(1,6),(3,4),(4,3),(5,2),(2,5)], por lo que la probabilidad seria de 6/36
+    \item La probabilidad de que el número obtenido sea par\\
+    Como la mitas de los numeros son pares, entonces la probabilidad es de 1/2
+    \item La probabilidad de que el número obtenido sea múltiplo de tres\\
+    En este caso nos piden que sea, 3,6,9,12, por lo que los posibles numeros son (2,1),(1,2),(4,2),(2,4),(5,1),(1,5),(3,3),(6,3),(3,6),(5,4),(4,5),(6,6), por lo que la probabilidad es 12/36
+    \end{enumerate}
+    \item Se lanzan tres dados. Encontrar la probabilidad de que:
+    \begin{enumerate}
+    \item Salga 6 en todos\\
+    Con esto tenemos las siguientes sumas (4,1,1),(3,2,1),(2,2,2), por lo que la probabilidad seria 18/216
+    \item Los puntos obtenidos sumen 7\\
+    Las sumas posibles son (5,1,1),(4,2,1),(3,2,2), por lo que la probabilidad es de 18/216
+    \end{enumerate}
+    \item Busca la probabilidad de que al echar un dado al aire, salga:
+    \begin{enumerate}
+    \item Un número par\\
+    1/2
+    \item Un múltiplo de tres\\
+    1/3
+    \item Mayor que cuatro\\
+    1/3
+    \end{enumerate}
+    \item Se sacan dos bolas de una urna que se compone de una bola blanca, otra roja, otra verde y otra negra.
+    \begin{enumerate}
+    \item La primera bola negra se devuelve a la urna antes de sacar la segunda verde
+    La probabilidad de obtener una bola roja es 1/4 y verde 1/4, por lo de sacar una y despues la otra es 1/16
+    \item La primera bola no se devuelve
+    en este caso la probabilidad va a cambiar porque habra menos bolas, la probabilidad de roja es 1/4 y la verde es 1/3, por lo que la probabilidad es 1/12
+    \end{enumerate}
+    \item Una urna contiene tres bolas rojas y siete blancas. Se extraen dos bolas al azar. Hallar la probabilidad de:
+    \begin{enumerate}
+    \item Extraer las dos bolas rojas con reemplazamiento.\\
+    Aqui sera calcular 3/10*3*10
+    \item Sin reemplazamiento\\
+    En este caso sera 3/10*2/9, ya que las bolas no se regresaron
+    \end{enumerate}
+    \item En una clase hay 10 alumnas rubias, 20 morenas, cinco alumnos rubios y 10 morenos. Un día asisten 44 alumnos, encontrar la probabilidad de que el alumno que falta:
+    \begin{enumerate}
+    \item Sea hombre\\
+    Que sea hombre es 1/15
+    \item Sea mujer moreno\\
+    1/20
+    \item Sea hombre o mujer\\
+    1/45
+    \end{enumerate}
+\end{enumerate}
+\end{document}

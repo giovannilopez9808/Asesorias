@@ -1,0 +1,58 @@
+\documentclass[12pt,letterpaper]{report}
+\usepackage{graphicx}
+\usepackage{scrextend}
+\usepackage{vmargin}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage{float}
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage[usenames]{color}
+\parindent=0mm
+\pagestyle{empty}
+\definecolor{miorange}{rgb}{0.91, 0.43, 0.0}
+\begin{document}
+\setmargins{2.5cm}      
+{1.5cm}                     
+{2cm}  
+{24cm}                    
+{10pt}                          
+{1cm}                          
+{0pt}                             
+{2cm}
+\begin{flushright}
+\today
+\end{flushright}
+\vspace{-1.75cm}
+\section*{Tarea Clase 14}
+\subsection*{Obtenga las soluciones de las siguientes ecuaciones:}
+\begin{enumerate}
+\item Un chef va a preparar una ensalada de verduras con tomate, zanahoria, papa y brócoli. ¿De cuántas formas se puede preparar la ensalada usando solo 2 ingredientes?\\
+Usando la ecuación de combinaciones usando n=4 y r=2, tenemos que:
+\begin{align*}
+    C^4_2&= \frac{4!}{(4-2)!2!}\\ &= \frac{4*3}{2}\\ &= 6
+\end{align*}
+\item Eduardo, Carlos y Sergio se han presentado a un concurso de pintura. El concurso otorga \$200 al primer lugar y  \$100 al segundo. ¿De cuántas formas se pueden repartir los premios de primer y segundo lugar?
+Usando la ecuación de permutaciones usando n=3 y r=3, tenemos que la respuesta sera:
+\begin{align*}
+    P^3_3 &= \frac{3!}{(3-3)!}\\ &= \frac{3!}{0!}\\ &= 3!
+\end{align*}
+\item Se va a programar un torneo de ajedrez para los 10 integrantes de un club. ¿Cuántos partidos se deben programar si cada integrante jugará con cada uno de los demás sin partidos de revancha?
+Usando la ecuacion de combinaciones donde n=10 y r=2, se tiene que:
+\begin{align*}
+    C^{10}_2&= \frac{10!}{(10-2)!2!}\\ &= \frac{10*9}{2}\\ &= 45
+\end{align*}
+\item ¿De cuántas formas distintas pueden sentarse ocho personas alrededor de una mesa redonda?
+Usando permutaciones se tiene donde n=7, ya que no hay inicio ni fin en el circulo se tiene que:
+\begin{align*}
+    P^7_7= \frac{7!}{0!}=7!
+\end{align*}
+\item ¿Cuántos números de cinco cifras distintas se pueden formar con las cifras impares? ¿Cuántos de ellos son mayores de 70.000?\\
+Contanto los espacios, tendriamos la siguiente configuracion [9 10 10 10 5], esto porque solo hay 5 numeros impares entre el 0-9, y para contabilizar cuales son mayoes a 70,000, llevaremos la cuenta de la siguiente forma [3 10 10 10 5 ], se redujo el numero del principio porque solo podemos usar los numeros 7,8,9
+\item Una mesa presidencial está formada por ocho personas ¿De cuántas formas distintas se pueden sentar, si el presidente y el secretario siempre van juntos?\\
+Este problema tendremos que realizar la multiplicacion de dos permutaciones, una de n=7 y r= 7, ya que se contara al presidente y al secretario como una, y sera multiplicado por la permutacion de n=2 y r=2 esto para representar el cambio entre el presidente y el secretario entre ellos.
+\end{enumerate}
+\end{document}

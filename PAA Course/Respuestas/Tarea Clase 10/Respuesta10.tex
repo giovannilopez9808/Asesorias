@@ -1,0 +1,79 @@
+\documentclass[12pt,letterpaper]{report}
+\usepackage{graphicx}
+\usepackage{scrextend}
+\usepackage{vmargin}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage{float}
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage[usenames]{color}
+\parindent=0mm
+\pagestyle{empty}
+\definecolor{miorange}{rgb}{0.91, 0.43, 0.0}
+\begin{document}
+\setmargins{2.5cm}      
+{1.5cm}                     
+{2cm}  
+{24cm}                    
+{10pt}                          
+{1cm}                          
+{0pt}                             
+{2cm}
+\begin{flushright}
+\today
+\end{flushright}
+\vspace{-1.75cm}
+\section*{Tarea Clase 10}
+\subsection*{Obtenga las soluciones de las siguientes ecuaciones:}
+\begin{enumerate}
+\item Escribe de todas las formas posibles la ecuación de la recta que pasa por los puntos A(1,2) y B(-2,5)\\
+Calculando la pendiente se tiene que:
+\begin{equation*}
+    m=\frac{y_2-y_1}{x_2-x_1}=\frac{5-2}{-2-1}= \frac{3}{-3}=-1
+\end{equation*}
+por lo que nuestra ecuacion de la recta toma la siguiente forma:
+\begin{equation*}
+    y=-x+b
+\end{equation*}
+calculando el parametro b, se tiene que:
+\begin{align*}
+    2&=-(1)+b\\
+    b&=3
+\end{align*}
+por lo que la ecuación de la recta es:
+\begin{equation*}
+    y=-x+3
+\end{equation*}
+\item Hallar la pendiente y la ordenada en el origen de la recta $3x+2y-7=0$.\\
+Despejando la variable y se tiene que:
+\begin{align*}
+    2y&=7-3x\\
+    y&=-\frac{3}{2}+\frac{7}{2}
+\end{align*}
+por lo que la pendiente es igual a -3/2
+\item La recta $r=3x+ny-7=0$ pasa por el punto A(3, 2) y es paralela a la recta $s=mx+2y-13=0$. Calcula m y n.\\
+Sustituyendo los puntos de la recta r se tiene que:
+\begin{align*}
+    3(3)+n(2)-7&=0\\
+    9+2n-7&=0\\
+    2n+2&=0\\
+    n&=-1
+\end{align*}
+despejando y la recta s se tiene que:
+\begin{align*}
+    mx+2y&=13\\
+    2y&=13-mx\\
+    y&=\frac{13}{2}-\frac{m}{2}x
+\end{align*}
+como la recta r y s tienen la misma pendiente dado que son paralelas, entonces:
+\begin{align*}
+    \frac{3}{n}&=-\frac{m}{2}\\
+    \frac{3}{-1}&=-\frac{m}{2}\\
+    m&=6
+\end{align*}
+\end{enumerate}
+\end{document}
