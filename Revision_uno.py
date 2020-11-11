@@ -8,12 +8,12 @@ def autolabel(rects):
                     xytext=(0,3),  # 3 points vertical offset
                     textcoords="offset points",
                     ha='center', va='bottom',)
-valores=np.loadtxt("Examen_Final_valeria.csv",delimiter=",",max_rows=1,skiprows=1,dtype=str)
+valores=np.loadtxt("Examen_Final_antuan.csv",delimiter=",",max_rows=1,skiprows=1,dtype=str)
 respuestas=np.loadtxt("Respuestas.csv",dtype=str)
 valores=np.delete(valores,0)
 bien,mal,no=0,0,0
 n=1
-file=open("respuestas_valeria.csv","w")
+file=open("respuestas_antuan.csv","w")
 file.write("Número,respondida,correcta")
 for valor,respuesta in zip(valores,respuestas):
     valor=valor.strip('""')
