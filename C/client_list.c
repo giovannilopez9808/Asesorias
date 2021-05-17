@@ -1,6 +1,8 @@
 #include <stdbool.h>
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
+int main();
 struct client
 {
     char *ID;
@@ -19,6 +21,7 @@ int obtain_clients_number()
 {
     return sizeof(clients) / sizeof(*clients);
 }
+void change_client_options();
 /*
 Lectura del csv
 */
@@ -113,13 +116,13 @@ int menu()
     while (!valid_option)
     {
         printf("MENU\n");
-        printf("1.  Alta de clientes\n");
-        printf("2.  Cambio de cliente\n");
-        printf("3.  Borrado de clientes\n");
-        printf("4.  Reportes de clientes\n");
-        printf("5.  Localizar cliente\n");
-        printf("6.  Manual de Usuario\n");
-        printf("7.  Salir\n");
+        printf(" 1.  Alta de clientes\n");
+        printf(" 2.  Cambio de cliente\n");
+        printf(" 3.  Borrado de clientes\n");
+        printf(" 4.  Reportes de clientes\n");
+        printf(" 5.  Localizar cliente\n");
+        printf(" 6.  Manual de Usuario\n");
+        printf(" 7.  Salir\n");
         scanf("%i", &option);
         if (option >= 1 && option <= 7)
         {
@@ -155,7 +158,7 @@ bool validate_client_ID(char *id)
 void change_client_name(int id)
 {
     char *data;
-    printf("Escribe el nombre del nuevo cliente\n");
+    printf("Escribe el nombre del cliente\n");
     scanf("%s", data);
     clients[id].name = data;
 }
@@ -165,7 +168,7 @@ void change_client_email(int id)
     bool validate = false;
     while (!validate)
     {
-        printf("Escribe el email del nuevo cliente\n");
+        printf("Escribe el email del cliente\n");
         scanf("%s", data);
         validate = validate_email(data);
     }
@@ -174,42 +177,49 @@ void change_client_email(int id)
 void change_client_calle(int id)
 {
     char *data;
-    printf("Escribe la calle del nuevo cliente\n");
+    printf("Escribe la calle del cliente\n");
     scanf("%s", data);
     clients[id].calle = data;
 }
 void change_client_number(int id)
 {
     char *data;
-    printf("Escribe el numero del nuevo cliente\n");
+    printf("Escribe el numero del cliente\n");
     scanf("%s", data);
     clients[id].number = data;
 }
 void change_client_cp(int id)
 {
     char *data;
-    printf("Escribe el Codigo Postal del nuevo cliente\n");
+    printf("Escribe el Codigo Postal del cliente\n");
     scanf("%s", data);
     clients[id].cp = data;
 }
 void change_client_colonia(int id)
 {
     char *data;
-    printf("Escribe la colonia del nuevo cliente\n");
+    printf("Escribe la colonia del cliente\n");
     scanf("%s", data);
     clients[id].colonia = data;
+}
+void change_client_municipio(int id)
+{
+    char *data;
+    printf("Escribe el municipio del cliente\n");
+    scanf("%s", data);
+    clients[id].municipio = data;
 }
 void change_client_estado(int id)
 {
     char *data;
-    printf("Escribe el estado del nuevo cliente\n");
+    printf("Escribe el estado del cliente\n");
     scanf("%s", data);
     clients[id].estado = data;
 }
 void change_client_pais(int id)
 {
     char *data;
-    printf("Escribe el pais del nuevo cliente\n");
+    printf("Escribe el pais del cliente\n");
     scanf("%s", data);
     clients[id].pais = data;
 }
@@ -220,7 +230,7 @@ void create_client()
     char *data;
     while (!validate)
     {
-        printf("Escribe el numero del nuevo cliente\n");
+        printf("Escribe el numero del cliente\n");
         scanf("%s", data);
         validate = validate_client_ID(data);
     }
@@ -231,13 +241,63 @@ void create_client()
     change_client_number(i);
     change_client_cp(i);
     change_client_colonia(i);
+    change_client_municipio(i);
     change_client_estado(i);
     change_client_pais(i);
     printf("\n\n");
     printf("Cliente añadido");
     printf("\n\n");
 }
-void select_option(int option)
+void change_client_menu()
+{
+    bool finish = false;
+    int id, field;
+    printf("Introduce el ID del cliente\n");
+    scanf("%i", &id);
+    while (!finish)
+    {
+
+        printf("Escribe el campo que quieras modificar\n");
+        printf("Opciones disponibles\n");
+        printf(" 1.  Nombre\n");
+        printf(" 2.  Email\n");
+        printf(" 3.  Calle\n");
+        printf(" 4.  Numero\n");
+        printf(" 5.  Codigo Postal\n");
+        printf(" 6.  Municipio\n");
+        printf(" 7.  Estado\n");
+        printf(" 8.  Pais\n");
+        scanf("%i", &field);
+        change_client_options(id, field);
+    }
+}
+void change_client_options(int id, int field)
+{
+    printf("%i", field);
+    switch (field)
+    {
+    case 1:
+        change_client_name(id);
+        change_client_menu();
+    case 2:
+        break;
+    case 3:
+        break;
+    case 4:
+        break;
+    case 5:
+        break;
+    case 6:
+        break;
+    case 7:
+        break;
+    case 8:
+        break;
+    default:
+        break;
+    }
+}
+void select_menu_option(int option)
 {
     switch (option)
     {
@@ -245,8 +305,7 @@ void select_option(int option)
         create_client();
         main();
     case 2:
-        printf("Opcion 2");
-        break;
+        change_client_menu();
     case 3:
         printf("Opcion 3");
         break;
@@ -260,17 +319,17 @@ void select_option(int option)
         printf("Opcion 6");
         break;
     case 7:
-        break;
+        exit(-1);
     default:
         break;
-    }
+    };
 }
 int main()
 {
     int option;
     option = menu();
     read_database();
-    select_option(option);
+    select_menu_option(option);
     // for (int i = 0; i < 4; i++)
     // {
     //     printf("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n",
