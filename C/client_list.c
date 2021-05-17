@@ -23,6 +23,8 @@ int obtain_clients_number()
 }
 void change_client_options();
 void create_files_options();
+void create_search_options();
+void create_menu();
 /*
 Lectura del csv
 */
@@ -164,7 +166,7 @@ void change_client_name(int id)
     char *data;
     printf("Escribe el nombre del cliente\n");
     scanf("%s", data);
-    clients[id].name = data;
+    clients[id].name = strdup(data);
 }
 void view_client_email(int id)
 {
@@ -181,7 +183,7 @@ void change_client_email(int id)
         scanf("%s", data);
         validate = validate_email(data);
     }
-    clients[id].email = data;
+    clients[id].email = strdup(data);
 }
 void view_client_calle(int id)
 {
@@ -193,7 +195,7 @@ void change_client_calle(int id)
     char *data;
     printf("Escribe la calle del cliente\n");
     scanf("%s", data);
-    clients[id].calle = data;
+    clients[id].calle = strdup(data);
 }
 void view_client_number(int id)
 {
@@ -205,7 +207,7 @@ void change_client_number(int id)
     char *data;
     printf("Escribe el numero del cliente\n");
     scanf("%s", data);
-    clients[id].number = data;
+    clients[id].number = strdup(data);
 }
 void view_client_cp(int id)
 {
@@ -217,7 +219,7 @@ void change_client_cp(int id)
     char *data;
     printf("Escribe el Codigo Postal del cliente\n");
     scanf("%s", data);
-    clients[id].cp = data;
+    clients[id].cp = strdup(data);
 }
 void view_client_colonia(int id)
 {
@@ -229,7 +231,7 @@ void change_client_colonia(int id)
     char *data;
     printf("Escribe la colonia del cliente\n");
     scanf("%s", data);
-    clients[id].colonia = data;
+    clients[id].colonia = strdup(data);
 }
 void view_client_municipio(int id)
 {
@@ -241,7 +243,7 @@ void change_client_municipio(int id)
     char *data;
     printf("Escribe el municipio del cliente\n");
     scanf("%s", data);
-    clients[id].municipio = data;
+    clients[id].municipio = strdup(data);
 }
 void view_client_estado(int id)
 {
@@ -253,7 +255,7 @@ void change_client_estado(int id)
     char *data;
     printf("Escribe el estado del cliente\n");
     scanf("%s", data);
-    clients[id].estado = data;
+    clients[id].estado = strdup(data);
 }
 void view_client_pais(int id)
 {
@@ -265,7 +267,7 @@ void change_client_pais(int id)
     char *data;
     printf("Escribe el pais del cliente\n");
     scanf("%s", data);
-    clients[id].pais = data;
+    clients[id].pais = strdup(data);
 }
 void create_client()
 {
@@ -278,7 +280,7 @@ void create_client()
         scanf("%s", data);
         validate = validate_client_ID(data);
     }
-    clients[i].ID = data;
+    clients[i].ID = strdup(data);
     change_client_name(i);
     change_client_email(i);
     change_client_calle(i);
@@ -311,7 +313,7 @@ void change_client_menu()
         printf(" 6.  Municipio\n");
         printf(" 7.  Estado\n");
         printf(" 8.  Pais\n");
-        printf(" 9.  Salir\n");
+        printf(" 9.  Regresar al menu\n");
         scanf("%i", &field);
         change_client_options(id, field);
     };
@@ -353,7 +355,7 @@ void change_client_options(int id, int field)
         change_client_pais(id);
         change_client_menu();
     case 9:
-        exit(-1);
+        create_menu();
     default:
         break;
     }
@@ -394,7 +396,7 @@ void select_file_option(int file_option)
     case 3:
         break;
     case 4:
-        exit(-1);
+        create_menu();
     default:
         break;
     }
@@ -406,9 +408,91 @@ void create_files_options()
     printf(" 1.  Listado completo\n");
     printf(" 2.  Listado ordenado por numero de cliente\n");
     printf(" 3.  Listado ordenado por nobre de cliente\n");
-    printf(" 4. Salir\n");
+    printf(" 4.  Regresar al menu\n");
     scanf("%i", &file_option);
     select_file_option(file_option);
+}
+int search_from_client_ID(char *id)
+{
+    int clients_number = obtain_clients_number();
+    for (int i = 0; i < clients_number; i++)
+    {
+        printf("%s %s", clients[i].ID, id);
+        if (strcmp(clients[i].ID, id) == 0)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+int search_from_client_name(char *name)
+{
+    int clients_number = obtain_clients_number();
+    for (int i = 0; i < clients_number; i++)
+    {
+        printf("%s %s", clients[i].name, name);
+        if (strcmp(clients[i].name, name) == 0)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+void print_client_information_from_id(int id)
+{
+    if (id != -1)
+    {
+        // printf("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n",
+        //        clients[id].ID,
+        //        clients[id].name,
+        //        clients[id].email,
+        //        clients[id].calle,
+        //        clients[id].number,
+        //        clients[id].cp,
+        //        clients[id].colonia,
+        //        clients[id].municipio,
+        //        clients[id].estado,
+        //        clients[id].pais);
+        printf("Encontrado");
+    }
+    else
+        printf("No se encuentra registrado el usuario");
+}
+void select_search_option(int search_option)
+{
+    char *name;
+    char *id;
+    int found;
+    switch (search_option)
+    {
+    case 1:
+        printf("Escribe el ID del cliente\n");
+        scanf("%s", id);
+        printf("%s", id);
+        found = search_from_client_ID(id);
+        print_client_information_from_id(found);
+        create_search_options();
+    case 2:
+        printf("Escribe el nombre del cliente\n");
+        scanf("%s", name);
+        found = search_from_client_ID(id);
+        print_client_information_from_id(found);
+        create_search_options();
+    case 3:
+        create_menu();
+    default:
+        break;
+    }
+}
+void create_search_options()
+{
+    int search_option;
+    printf("Escribe la opción que deseas para buscar usuarios\n");
+    printf(" 1. Por numero de cliente\n");
+    printf(" 2. Por nombre de cliente\n");
+    printf(" 3. Regresar al menu\n");
+    scanf("%i", &search_option);
+    select_search_option(search_option);
 }
 void select_menu_option(int option)
 {
@@ -416,17 +500,17 @@ void select_menu_option(int option)
     {
     case 1:
         create_client();
-        main();
+        create_menu();
     case 2:
         change_client_menu();
     case 3:
         printf("Opcion 3");
-        break;
+        create_menu();
     case 4:
         create_files_options();
     case 5:
-        printf("Opcion 5");
-        break;
+        create_search_options();
+        main();
     case 6:
         printf("Opcion 6");
         break;
@@ -436,11 +520,15 @@ void select_menu_option(int option)
         break;
     };
 }
-int main()
+void create_menu()
 {
     int option;
     option = menu();
-    read_database();
     select_menu_option(option);
+}
+int main()
+{
+    read_database();
+    create_menu();
     return 0;
 }
