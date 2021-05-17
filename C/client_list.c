@@ -2,25 +2,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-int main();
-struct client
-{
-    char *ID;
-    char *name;
-    char *email;
-    char *calle;
-    char *number;
-    char *cp;
-    char *colonia;
-    char *municipio;
-    char *estado;
-    char *pais;
-};
-struct client clients[20];
-int obtain_clients_number()
-{
-    return sizeof(clients) / sizeof(*clients);
-}
+#include "clients.h"
 int comparator_names(const void *p, const void *q)
 {
     return strcmp(((struct client *)p)->name,
@@ -35,9 +17,6 @@ void change_client_options();
 void create_files_options();
 void create_search_options();
 void create_menu();
-/*
-Lectura del csv
-*/
 void read_database()
 {
     FILE *database = fopen("registros_de_cliente_base.csv",
@@ -71,6 +50,9 @@ void read_database()
         i++;
     }
 }
+/*
+Lectura del csv
+*/
 /*
  Validacion del email
 */
@@ -141,19 +123,6 @@ int menu()
         }
     }
     return option;
-}
-int obtain_number_new_client()
-{
-    int clients_number = obtain_clients_number();
-    int j;
-    for (int i = 0; i < clients_number; i++)
-    {
-        if (clients[i].ID == NULL)
-        {
-            j = i;
-            break;
-        }
-    }
 }
 bool validate_client_ID(char *id)
 {
@@ -577,7 +546,7 @@ void select_menu_option(int option)
         create_files_options();
     case 5:
         create_search_options();
-        main();
+        create_menu();
     case 6:
         printf("Opcion 6");
         break;
