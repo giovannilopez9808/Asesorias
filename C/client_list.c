@@ -22,6 +22,7 @@ int obtain_clients_number()
     return sizeof(clients) / sizeof(*clients);
 }
 void change_client_options();
+void create_files_options();
 /*
 Lectura del csv
 */
@@ -58,7 +59,6 @@ void read_database()
         i++;
     }
 }
-
 /*
  Validacion del email
 */
@@ -66,7 +66,6 @@ bool validate_at(char *email)
 {
     char *p;
     int at_number = 0;
-
     p = email;
     while (*p != '\0')
     {
@@ -315,7 +314,7 @@ void change_client_menu()
         printf(" 9.  Salir\n");
         scanf("%i", &field);
         change_client_options(id, field);
-    }
+    };
 }
 void change_client_options(int id, int field)
 {
@@ -359,6 +358,58 @@ void change_client_options(int id, int field)
         break;
     }
 }
+void create_file_complete()
+{
+    FILE *file;
+    int client_number = obtain_number_new_client();
+    file = fopen("Listado_completo.csv", "w");
+    for (int i = 0; i < client_number; i++)
+    {
+        fprintf(file, "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s",
+                clients[i].ID,
+                clients[i].name,
+                clients[i].email,
+                clients[i].calle,
+                clients[i].number,
+                clients[i].cp,
+                clients[i].colonia,
+                clients[i].municipio,
+                clients[i].estado,
+                clients[i].pais);
+    }
+    fclose(file);
+    printf("\n\n");
+    printf("Archivo listo");
+    printf("\n\n");
+}
+void select_file_option(int file_option)
+{
+    switch (file_option)
+    {
+    case 1:
+        create_file_complete();
+        create_files_options();
+    case 2:
+        break;
+    case 3:
+        break;
+    case 4:
+        exit(-1);
+    default:
+        break;
+    }
+}
+void create_files_options()
+{
+    int file_option;
+    printf("Escribe la opción que deseas para los reportes de clientes\n");
+    printf(" 1.  Listado completo\n");
+    printf(" 2.  Listado ordenado por numero de cliente\n");
+    printf(" 3.  Listado ordenado por nobre de cliente\n");
+    printf(" 4. Salir\n");
+    scanf("%i", &file_option);
+    select_file_option(file_option);
+}
 void select_menu_option(int option)
 {
     switch (option)
@@ -372,8 +423,7 @@ void select_menu_option(int option)
         printf("Opcion 3");
         break;
     case 4:
-        printf("Opcion 4");
-        break;
+        create_files_options();
     case 5:
         printf("Opcion 5");
         break;
@@ -392,19 +442,5 @@ int main()
     option = menu();
     read_database();
     select_menu_option(option);
-    // for (int i = 0; i < 4; i++)
-    // {
-    //     printf("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n",
-    //            clients[i].ID,
-    //            clients[i].name,
-    //            clients[i].email,
-    //            clients[i].calle,
-    //            clients[i].number,
-    //            clients[i].cp,
-    //            clients[i].colonia,
-    //            clients[i].municipio,
-    //            clients[i].estado,
-    //            clients[i].pais);
-    // }
     return 0;
 }
