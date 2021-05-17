@@ -417,10 +417,12 @@ int search_from_client_ID(char *id)
     int clients_number = obtain_clients_number();
     for (int i = 0; i < clients_number; i++)
     {
-        printf("%s %s", clients[i].ID, id);
-        if (strcmp(clients[i].ID, id) == 0)
+        if (clients[i].ID != NULL)
         {
-            return i;
+            if (strcmp(clients[i].ID, id) == 0)
+            {
+                return i;
+            }
         }
     }
     return -1;
@@ -428,7 +430,7 @@ int search_from_client_ID(char *id)
 int search_from_client_name(char *name)
 {
     int clients_number = obtain_clients_number();
-    for (int i = 0; i < clients_number; i++)
+    for (int i = 0; i < clients_number - 1; i++)
     {
         printf("%s %s", clients[i].name, name);
         if (strcmp(clients[i].name, name) == 0)
@@ -438,45 +440,44 @@ int search_from_client_name(char *name)
     }
     return -1;
 }
-void print_client_information_from_id(int id)
+void print_client_information_from_id(int *id)
 {
-    if (id != -1)
+    if (*id != -1)
     {
-        // printf("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n",
-        //        clients[id].ID,
-        //        clients[id].name,
-        //        clients[id].email,
-        //        clients[id].calle,
-        //        clients[id].number,
-        //        clients[id].cp,
-        //        clients[id].colonia,
-        //        clients[id].municipio,
-        //        clients[id].estado,
-        //        clients[id].pais);
-        printf("Encontrado");
+        printf("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n",
+               clients[*id].ID,
+               clients[*id].name,
+               clients[*id].email,
+               clients[*id].calle,
+               clients[*id].number,
+               clients[*id].cp,
+               clients[*id].colonia,
+               clients[*id].municipio,
+               clients[*id].estado,
+               clients[*id].pais);
     }
     else
-        printf("No se encuentra registrado el usuario");
+        printf("No se encuentra registrado el usuario\n");
 }
 void select_search_option(int search_option)
 {
-    char *name;
-    char *id;
+    char name;
+    char id;
     int found;
     switch (search_option)
     {
     case 1:
         printf("Escribe el ID del cliente\n");
-        scanf("%s", id);
-        printf("%s", id);
-        found = search_from_client_ID(id);
-        print_client_information_from_id(found);
+        scanf("%s", &id);
+        found = search_from_client_ID(&id);
+        printf("%i\n", found);
+        print_client_information_from_id(&found);
         create_search_options();
     case 2:
         printf("Escribe el nombre del cliente\n");
-        scanf("%s", name);
-        found = search_from_client_ID(id);
-        print_client_information_from_id(found);
+        scanf("%s", &name);
+        found = search_from_client_ID(&id);
+        print_client_information_from_id(&found);
         create_search_options();
     case 3:
         create_menu();
