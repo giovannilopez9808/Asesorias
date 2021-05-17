@@ -21,6 +21,16 @@ int obtain_clients_number()
 {
     return sizeof(clients) / sizeof(*clients);
 }
+int comparator_names(const void *p, const void *q)
+{
+    return strcmp(((struct client *)p)->name,
+                  ((struct client *)q)->name);
+}
+int comparator_ID(const void *p, const void *q)
+{
+    return strcmp(((struct client *)p)->ID,
+                  ((struct client *)q)->ID);
+}
 void change_client_options();
 void create_files_options();
 void create_search_options();
@@ -384,6 +394,59 @@ void create_file_complete()
     printf("Archivo listo");
     printf("\n\n");
 }
+void create_file_sorted_by_names()
+{
+    int clients_number = obtain_clients_number();
+    qsort(clients,
+          clients_number,
+          sizeof(struct client),
+          comparator_names);
+    FILE *file;
+    int client_number = obtain_number_new_client();
+    file = fopen("Ord_ID_Cliente.csv", "w");
+    for (int i = 0; i < client_number; i++)
+    {
+        fprintf(file, "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s",
+                clients[i].ID,
+                clients[i].name,
+                clients[i].email,
+                clients[i].calle,
+                clients[i].number,
+                clients[i].cp,
+                clients[i].colonia,
+                clients[i].municipio,
+                clients[i].estado,
+                clients[i].pais);
+    }
+    fclose(file);
+    printf("\n\n");
+    printf("Archivo listo");
+    printf("\n\n");
+}
+void create_file_sorted_by_IDs()
+{
+    FILE *file;
+    int client_number = obtain_number_new_client();
+    file = fopen("Listado_completo.csv", "w");
+    for (int i = 0; i < client_number; i++)
+    {
+        fprintf(file, "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s",
+                clients[i].ID,
+                clients[i].name,
+                clients[i].email,
+                clients[i].calle,
+                clients[i].number,
+                clients[i].cp,
+                clients[i].colonia,
+                clients[i].municipio,
+                clients[i].estado,
+                clients[i].pais);
+    }
+    fclose(file);
+    printf("\n\n");
+    printf("Archivo listo");
+    printf("\n\n");
+}
 void select_file_option(int file_option)
 {
     switch (file_option)
@@ -392,7 +455,8 @@ void select_file_option(int file_option)
         create_file_complete();
         create_files_options();
     case 2:
-        break;
+        create_file_sorted_by_names();
+        create_files_options();
     case 3:
         break;
     case 4:
@@ -432,10 +496,13 @@ int search_from_client_name(char *name)
     int clients_number = obtain_clients_number();
     for (int i = 0; i < clients_number - 1; i++)
     {
-        printf("%s %s", clients[i].name, name);
-        if (strcmp(clients[i].name, name) == 0)
+        if (clients[i].name != NULL)
         {
-            return i;
+            printf("%s %s\n", clients[i].name, name);
+            if (strcmp(clients[i].name, name) == 0)
+            {
+                return i;
+            }
         }
     }
     return -1;
@@ -457,7 +524,7 @@ void print_client_information_from_id(int *id)
                clients[*id].pais);
     }
     else
-        printf("No se encuentra registrado el usuario\n");
+        printf("No se encuentra registrado el usuario\n\n");
 }
 void select_search_option(int search_option)
 {
@@ -470,13 +537,12 @@ void select_search_option(int search_option)
         printf("Escribe el ID del cliente\n");
         scanf("%s", &id);
         found = search_from_client_ID(&id);
-        printf("%i\n", found);
         print_client_information_from_id(&found);
         create_search_options();
     case 2:
         printf("Escribe el nombre del cliente\n");
         scanf("%s", &name);
-        found = search_from_client_ID(&id);
+        found = search_from_client_name(&name);
         print_client_information_from_id(&found);
         create_search_options();
     case 3:
