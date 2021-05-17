@@ -155,12 +155,22 @@ bool validate_client_ID(char *id)
         return false;
     }
 }
+void view_client_name(int id)
+{
+    printf("El nombre del cliente es:\n%s\n",
+           clients[id].name);
+}
 void change_client_name(int id)
 {
     char *data;
     printf("Escribe el nombre del cliente\n");
     scanf("%s", data);
     clients[id].name = data;
+}
+void view_client_email(int id)
+{
+    printf("El email del cliente es:\n%s\n",
+           clients[id].email);
 }
 void change_client_email(int id)
 {
@@ -174,12 +184,22 @@ void change_client_email(int id)
     }
     clients[id].email = data;
 }
+void view_client_calle(int id)
+{
+    printf("La calle del cliente es:\n%s\n",
+           clients[id].calle);
+}
 void change_client_calle(int id)
 {
     char *data;
     printf("Escribe la calle del cliente\n");
     scanf("%s", data);
     clients[id].calle = data;
+}
+void view_client_number(int id)
+{
+    printf("El numero del cliente es:\n%s\n",
+           clients[id].number);
 }
 void change_client_number(int id)
 {
@@ -188,12 +208,22 @@ void change_client_number(int id)
     scanf("%s", data);
     clients[id].number = data;
 }
+void view_client_cp(int id)
+{
+    printf("El Codigo Postal del cliente es:\n%s\n",
+           clients[id].cp);
+}
 void change_client_cp(int id)
 {
     char *data;
     printf("Escribe el Codigo Postal del cliente\n");
     scanf("%s", data);
     clients[id].cp = data;
+}
+void view_client_colonia(int id)
+{
+    printf("La colonia del cliente es:\n%s\n",
+           clients[id].colonia);
 }
 void change_client_colonia(int id)
 {
@@ -202,6 +232,11 @@ void change_client_colonia(int id)
     scanf("%s", data);
     clients[id].colonia = data;
 }
+void view_client_municipio(int id)
+{
+    printf("El municipio del cliente es:\n%s\n",
+           clients[id].municipio);
+}
 void change_client_municipio(int id)
 {
     char *data;
@@ -209,12 +244,22 @@ void change_client_municipio(int id)
     scanf("%s", data);
     clients[id].municipio = data;
 }
+void view_client_estado(int id)
+{
+    printf("El estado del cliente es:\n%s\n",
+           clients[id].estado);
+}
 void change_client_estado(int id)
 {
     char *data;
     printf("Escribe el estado del cliente\n");
     scanf("%s", data);
     clients[id].estado = data;
+}
+void view_client_pais(int id)
+{
+    printf("El pais del cliente es:\n%s\n",
+           clients[id].pais);
 }
 void change_client_pais(int id)
 {
@@ -267,32 +312,49 @@ void change_client_menu()
         printf(" 6.  Municipio\n");
         printf(" 7.  Estado\n");
         printf(" 8.  Pais\n");
+        printf(" 9.  Salir\n");
         scanf("%i", &field);
         change_client_options(id, field);
     }
 }
 void change_client_options(int id, int field)
 {
-    printf("%i", field);
     switch (field)
     {
     case 1:
+        view_client_name(id);
         change_client_name(id);
         change_client_menu();
     case 2:
-        break;
+        view_client_email(id);
+        change_client_email(id);
+        change_client_menu();
     case 3:
-        break;
+        view_client_calle(id);
+        change_client_calle(id);
+        change_client_menu();
     case 4:
-        break;
+        view_client_number(id);
+        change_client_number(id);
+        change_client_menu();
     case 5:
-        break;
+        view_client_cp(id);
+        change_client_cp(id);
+        change_client_menu();
     case 6:
-        break;
+        view_client_municipio(id);
+        change_client_municipio(id);
+        change_client_menu();
     case 7:
-        break;
+        view_client_estado(id);
+        change_client_estado(id);
+        change_client_menu();
     case 8:
-        break;
+        view_client_pais(id);
+        change_client_pais(id);
+        change_client_menu();
+    case 9:
+        exit(-1);
     default:
         break;
     }
