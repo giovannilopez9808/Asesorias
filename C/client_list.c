@@ -6,7 +6,9 @@
 void change_client_options();
 void create_files_options();
 void create_search_options();
+void change_client_menu();
 int search_from_client_ID();
+bool does_clien_exist();
 void create_menu();
 bool validate_at(char *email)
 {
@@ -140,8 +142,10 @@ void change_client_municipio(int id)
 {
     char *data;
     printf("Escribe el municipio del cliente: ");
-    scanf("%s", data);
+    getchar();
+    scanf("%[^\n]", data);
     clients[id].municipio = strdup(data);
+    view_client_municipio(id);
 }
 void view_client_estado(int id)
 {
@@ -167,31 +171,36 @@ void change_client_pais(int id)
     scanf("%s", data);
     clients[id].pais = strdup(data);
 }
-void change_client_menu()
+void init_change_client_menu()
 {
-    bool finish = false;
-    int field, location;
+    bool client_exists = false;
+    int location;
     char number;
-    printf("Introduce el ID del cliente: ");
-    scanf("%s", &number);
-    location = search_from_client_ID(&number);
-    while (!finish)
+    while (!client_exists)
     {
-
-        printf("Escribe el campo que quieras modificar\n");
-        printf("Opciones disponibles\n");
-        printf(" 1.  Nombre\n");
-        printf(" 2.  Email\n");
-        printf(" 3.  Calle\n");
-        printf(" 4.  Numero\n");
-        printf(" 5.  Codigo Postal\n");
-        printf(" 6.  Municipio\n");
-        printf(" 7.  Estado\n");
-        printf(" 8.  Pais\n");
-        printf(" 9.  Regresar al menu\n");
-        scanf("%i", &field);
-        change_client_options(location, field);
-    };
+        printf("Introduce el ID del cliente: ");
+        scanf("%s", &number);
+        location = search_from_client_ID(&number);
+        client_exists = does_clien_exist(location);
+    }
+    change_client_menu(location);
+}
+void change_client_menu(int location)
+{
+    int field;
+    printf("Opciones disponibles\n");
+    printf(" 1.  Nombre\n");
+    printf(" 2.  Email\n");
+    printf(" 3.  Calle\n");
+    printf(" 4.  Numero\n");
+    printf(" 5.  Codigo Postal\n");
+    printf(" 6.  Municipio\n");
+    printf(" 7.  Estado\n");
+    printf(" 8.  Pais\n");
+    printf(" 9.  Regresar al menu\n");
+    printf("Escribe el campo que quieras modificar: ");
+    scanf("%i", &field);
+    change_client_options(location, field);
 }
 void change_client_options(int id, int field)
 {
@@ -200,39 +209,37 @@ void change_client_options(int id, int field)
     case 1:
         view_client_name(id);
         change_client_name(id);
-        change_client_menu();
+        change_client_menu(id);
     case 2:
         view_client_email(id);
         change_client_email(id);
-        change_client_menu();
+        change_client_menu(id);
     case 3:
         view_client_calle(id);
         change_client_calle(id);
-        change_client_menu();
+        change_client_menu(id);
     case 4:
         view_client_number(id);
         change_client_number(id);
-        change_client_menu();
+        change_client_menu(id);
     case 5:
         view_client_cp(id);
         change_client_cp(id);
-        change_client_menu();
+        change_client_menu(id);
     case 6:
-        view_client_municipio(id);
-        change_client_municipio(id);
-        change_client_menu();
+        //view_client_municipio(id);
+        //change_client_municipio(id);
+        change_client_menu(id);
     case 7:
         view_client_estado(id);
         change_client_estado(id);
-        change_client_menu();
+        change_client_menu(id);
     case 8:
         view_client_pais(id);
         change_client_pais(id);
-        change_client_menu();
+        change_client_menu(id);
     case 9:
         create_menu();
-    default:
-        break;
     }
 }
 void create_file_complete()
@@ -465,7 +472,7 @@ void select_menu_option(int option)
         create_client();
         create_menu();
     case 2:
-        change_client_menu();
+        init_change_client_menu();
     case 3:
         printf("Opcion 3");
         create_menu();
