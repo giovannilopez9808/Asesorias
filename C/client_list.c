@@ -62,11 +62,11 @@ void view_client_name(int id)
 }
 void change_client_name(int id)
 {
-    char *data;
+    char data;
     printf("Escribe el nombre del cliente: ");
     getchar();
-    scanf("%[^\n]", data);
-    clients[id].name = strdup(data);
+    scanf("%[^\n]", &data);
+    clients[id].name = strdup(&data);
 }
 void view_client_email(int id)
 {
@@ -75,15 +75,16 @@ void view_client_email(int id)
 }
 void change_client_email(int id)
 {
-    char *data;
+    char data;
     bool validate = false;
     while (!validate)
     {
         printf("Escribe el email del cliente: ");
-        scanf("%s", data);
-        validate = validate_email(data);
+        getchar();
+        scanf("%[^\n]", &data);
+        validate = validate_email(&data);
     }
-    clients[id].email = strdup(data);
+    clients[id].email = &data;
 }
 void view_client_calle(int id)
 {
@@ -140,11 +141,11 @@ void view_client_municipio(int id)
 }
 void change_client_municipio(int id)
 {
-    char *data;
+    char data;
     printf("Escribe el municipio del cliente: ");
     getchar();
-    scanf("%[^\n]", data);
-    clients[id].municipio = strdup(data);
+    scanf("%[^\n]", &data);
+    clients[id].municipio = &data;
     view_client_municipio(id);
 }
 void view_client_estado(int id)
@@ -213,6 +214,7 @@ void change_client_options(int id, int field)
     case 2:
         view_client_email(id);
         change_client_email(id);
+        view_client_email(id);
         change_client_menu(id);
     case 3:
         view_client_calle(id);
@@ -227,8 +229,8 @@ void change_client_options(int id, int field)
         change_client_cp(id);
         change_client_menu(id);
     case 6:
-        //view_client_municipio(id);
-        //change_client_municipio(id);
+        view_client_municipio(id);
+        change_client_municipio(id);
         change_client_menu(id);
     case 7:
         view_client_estado(id);
@@ -240,6 +242,8 @@ void change_client_options(int id, int field)
         change_client_menu(id);
     case 9:
         create_menu();
+    default:
+        break;
     }
 }
 void create_file_complete()
