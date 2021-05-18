@@ -337,11 +337,12 @@ void select_file_option(int file_option)
 void create_files_options()
 {
     int file_option;
-    printf("Escribe la opción que deseas para los reportes de clientes\n");
+    printf("Opciones disponibles:\n");
     printf(" 1.  Listado completo\n");
     printf(" 2.  Listado ordenado por numero de cliente\n");
     printf(" 3.  Listado ordenado por nobre de cliente\n");
     printf(" 4.  Regresar al menu\n");
+    printf("Escribe la opción que deseas para los reportes de clientes: ");
     scanf("%i", &file_option);
     select_file_option(file_option);
 }
@@ -450,6 +451,12 @@ void create_client()
         printf("Escribe el numero del cliente: ");
         scanf("%s", data);
         validate = validate_client_ID(data);
+        if (validate)
+        {
+            int id = search_from_client_ID(data);
+            validate = does_clien_exist(id);
+            validate = !validate;
+        }
     }
     clients[i].ID = strdup(data);
     change_client_name(i);
