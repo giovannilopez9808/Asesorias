@@ -50,12 +50,6 @@ void read_database()
         i++;
     }
 }
-/*
-Lectura del csv
-*/
-/*
- Validacion del email
-*/
 bool validate_at(char *email)
 {
     char *p;
@@ -467,7 +461,7 @@ int search_from_client_name(char *name)
     {
         if (clients[i].name != NULL)
         {
-            printf("%s %s\n", clients[i].name, name);
+            printf("%s\t%s\n", clients[i].name, name);
             if (strcmp(clients[i].name, name) == 0)
             {
                 return i;
@@ -497,27 +491,27 @@ void print_client_information_from_id(int *id)
 }
 void select_search_option(int search_option)
 {
-    char name;
+    char name_search;
     char id;
     int found;
     switch (search_option)
     {
     case 1:
-        printf("Escribe el ID del cliente\n");
+        printf("Escribe el ID del cliente: ");
         scanf("%s", &id);
         found = search_from_client_ID(&id);
         print_client_information_from_id(&found);
         create_search_options();
     case 2:
-        printf("Escribe el nombre del cliente\n");
-        scanf("%s", &name);
-        found = search_from_client_name(&name);
+        printf("Escribe el nombre del cliente: ");
+        getchar();
+        scanf("%[^\n]", &name_search);
+        // printf("%s\n", name_search);
+        found = search_from_client_name(&name_search);
         print_client_information_from_id(&found);
         create_search_options();
     case 3:
         create_menu();
-    default:
-        break;
     }
 }
 void create_search_options()
