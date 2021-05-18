@@ -3,16 +3,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "clients.h"
-int comparator_names(const void *p, const void *q)
-{
-    return strcmp(((struct client *)p)->name,
-                  ((struct client *)q)->name);
-}
-int comparator_ID(const void *p, const void *q)
-{
-    return strcmp(((struct client *)p)->ID,
-                  ((struct client *)q)->ID);
-}
 void change_client_options();
 void create_files_options();
 void create_search_options();
@@ -138,7 +128,8 @@ void change_client_name(int id)
 {
     char *data;
     printf("Escribe el nombre del cliente\n");
-    scanf("%s", data);
+    getchar();
+    scanf("%[^\n]", data);
     clients[id].name = strdup(data);
 }
 void view_client_email(int id)
@@ -360,10 +351,6 @@ void create_file_complete()
 void create_file_sorted_by_names()
 {
     int clients_number = obtain_clients_number();
-    qsort(clients,
-          clients_number,
-          sizeof(struct client),
-          comparator_names);
     FILE *file;
     int client_number = obtain_number_new_client();
     file = fopen("Ord_ID_Cliente.csv", "w");
@@ -461,7 +448,6 @@ int search_from_client_name(char *name)
     {
         if (clients[i].name != NULL)
         {
-            printf("%s\t%s\n", clients[i].name, name);
             if (strcmp(clients[i].name, name) == 0)
             {
                 return i;
@@ -506,7 +492,6 @@ void select_search_option(int search_option)
         printf("Escribe el nombre del cliente: ");
         getchar();
         scanf("%[^\n]", &name_search);
-        // printf("%s\n", name_search);
         found = search_from_client_name(&name_search);
         print_client_information_from_id(&found);
         create_search_options();
@@ -539,12 +524,18 @@ void select_menu_option(int option)
     case 4:
         create_files_options();
     case 5:
+        /*
+    TERMINADO
+    */
         create_search_options();
         create_menu();
     case 6:
         printf("Opcion 6");
         break;
     case 7:
+        /*
+    TERMINADO
+    */
         exit(-1);
     default:
         break;

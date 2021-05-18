@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "mean.C": "cpp"
+        "mean.C": "cpp",
+        "stdio.h": "c"
     }
 }
