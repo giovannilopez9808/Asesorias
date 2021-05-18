@@ -58,7 +58,7 @@ bool validate_email(char *email)
 void view_client_name(int id)
 {
     printf("El nombre del cliente es: %s\n",
-           clients[id].name);
+           clients[id]->name);
 }
 void change_client_name(int id)
 {
@@ -66,12 +66,12 @@ void change_client_name(int id)
     printf("Escribe el nombre del cliente: ");
     getchar();
     scanf("%[^\n]", &data);
-    clients[id].name = strdup(&data);
+    clients[id]->name = strdup(&data);
 }
 void view_client_email(int id)
 {
     printf("El email del cliente es: %s\n",
-           clients[id].email);
+           clients[id]->email);
 }
 void change_client_email(int id)
 {
@@ -84,12 +84,12 @@ void change_client_email(int id)
         scanf("%[^\n]", &data);
         validate = validate_email(&data);
     }
-    clients[id].email = &data;
+    clients[id]->email = &data;
 }
 void view_client_calle(int id)
 {
     printf("La calle del cliente es: %s\n",
-           clients[id].calle);
+           clients[id]->calle);
 }
 void change_client_calle(int id)
 {
@@ -97,12 +97,12 @@ void change_client_calle(int id)
     printf("Escribe la calle del cliente: ");
     getchar();
     scanf("%[^\n]", &data);
-    clients[id].calle = strdup(&data);
+    clients[id]->calle = strdup(&data);
 }
 void view_client_number(int id)
 {
     printf("El numero del cliente es: %s\n",
-           clients[id].number);
+           clients[id]->number);
 }
 void change_client_number(int id)
 {
@@ -110,12 +110,12 @@ void change_client_number(int id)
     printf("Escribe el numero del cliente: ");
     getchar();
     scanf("%[^\n]", &data);
-    clients[id].number = strdup(&data);
+    clients[id]->number = strdup(&data);
 }
 void view_client_cp(int id)
 {
     printf("El Codigo Postal del cliente es: %s\n",
-           clients[id].cp);
+           clients[id]->cp);
 }
 void change_client_cp(int id)
 {
@@ -123,12 +123,12 @@ void change_client_cp(int id)
     printf("Escribe el codigo postal del cliente: ");
     getchar();
     scanf("%[^\n]", &data);
-    clients[id].cp = strdup(&data);
+    clients[id]->cp = strdup(&data);
 }
 void view_client_colonia(int id)
 {
     printf("La colonia del cliente es: %s\n",
-           clients[id].colonia);
+           clients[id]->colonia);
 }
 void change_client_colonia(int id)
 {
@@ -136,12 +136,12 @@ void change_client_colonia(int id)
     printf("Escribe la colonia del cliente: ");
     getchar();
     scanf("%[^\n]", &data);
-    clients[id].colonia = strdup(&data);
+    clients[id]->colonia = strdup(&data);
 }
 void view_client_municipio(int id)
 {
     printf("El municipio del cliente es: %s\n",
-           clients[id].municipio);
+           clients[id]->municipio);
 }
 void change_client_municipio(int id)
 {
@@ -149,13 +149,13 @@ void change_client_municipio(int id)
     printf("Escribe el municipio del cliente: ");
     getchar();
     scanf("%[^\n]", &data);
-    clients[id].municipio = &data;
+    clients[id]->municipio = &data;
     view_client_municipio(id);
 }
 void view_client_estado(int id)
 {
     printf("El estado del cliente es: %s\n",
-           clients[id].estado);
+           clients[id]->estado);
 }
 void change_client_estado(int id)
 {
@@ -163,12 +163,12 @@ void change_client_estado(int id)
     printf("Escribe el estado del cliente: ");
     getchar();
     scanf("%[^\n]", &data);
-    clients[id].estado = strdup(&data);
+    clients[id]->estado = strdup(&data);
 }
 void view_client_pais(int id)
 {
     printf("El pais del cliente es: %s\n",
-           clients[id].pais);
+           clients[id]->pais);
 }
 void change_client_pais(int id)
 {
@@ -176,7 +176,7 @@ void change_client_pais(int id)
     printf("Escribe el pais del cliente: ");
     getchar();
     scanf("%[^\n]", &data);
-    clients[id].pais = strdup(&data);
+    clients[id]->pais = strdup(&data);
 }
 void init_change_client_menu()
 {
@@ -392,16 +392,16 @@ void print_client_information_from_id(int id)
     if (does_clien_exist(id))
     {
         printf("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n",
-               clients[id].ID,
-               clients[id].name,
-               clients[id].email,
-               clients[id].calle,
-               clients[id].number,
-               clients[id].cp,
-               clients[id].colonia,
-               clients[id].municipio,
-               clients[id].estado,
-               clients[id].pais);
+               clients[id]->ID,
+               clients[id]->name,
+               clients[id]->email,
+               clients[id]->calle,
+               clients[id]->number,
+               clients[id]->cp,
+               clients[id]->colonia,
+               clients[id]->municipio,
+               clients[id]->estado,
+               clients[id]->pais);
     }
     else
         printf("No se encuentra registrado el usuario\n\n");

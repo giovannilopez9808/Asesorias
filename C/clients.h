@@ -12,7 +12,7 @@ struct client
     char *estado;
     char *pais;
 };
-struct client clients[20];
+struct client *clients[20];
 int obtain_clients_number()
 {
     return sizeof(clients) / sizeof(*clients);
