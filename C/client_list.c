@@ -93,10 +93,11 @@ void view_client_calle(int id)
 }
 void change_client_calle(int id)
 {
-    char *data;
+    char data;
     printf("Escribe la calle del cliente: ");
-    scanf("%s", data);
-    clients[id].calle = strdup(data);
+    getchar();
+    scanf("%[^\n]", &data);
+    clients[id].calle = strdup(&data);
 }
 void view_client_number(int id)
 {
@@ -105,10 +106,11 @@ void view_client_number(int id)
 }
 void change_client_number(int id)
 {
-    char *data;
+    char data;
     printf("Escribe el numero del cliente: ");
-    scanf("%s", data);
-    clients[id].number = strdup(data);
+    getchar();
+    scanf("%[^\n]", &data);
+    clients[id].number = strdup(&data);
 }
 void view_client_cp(int id)
 {
@@ -117,10 +119,11 @@ void view_client_cp(int id)
 }
 void change_client_cp(int id)
 {
-    char *data;
-    printf("Escribe el Codigo Postal del cliente: ");
-    scanf("%s", data);
-    clients[id].cp = strdup(data);
+    char data;
+    printf("Escribe el codigo postal del cliente: ");
+    getchar();
+    scanf("%[^\n]", &data);
+    clients[id].cp = strdup(&data);
 }
 void view_client_colonia(int id)
 {
@@ -129,10 +132,11 @@ void view_client_colonia(int id)
 }
 void change_client_colonia(int id)
 {
-    char *data;
+    char data;
     printf("Escribe la colonia del cliente: ");
-    scanf("%s", data);
-    clients[id].colonia = strdup(data);
+    getchar();
+    scanf("%[^\n]", &data);
+    clients[id].colonia = strdup(&data);
 }
 void view_client_municipio(int id)
 {
@@ -155,10 +159,11 @@ void view_client_estado(int id)
 }
 void change_client_estado(int id)
 {
-    char *data;
+    char data;
     printf("Escribe el estado del cliente: ");
-    scanf("%s", data);
-    clients[id].estado = strdup(data);
+    getchar();
+    scanf("%[^\n]", &data);
+    clients[id].estado = strdup(&data);
 }
 void view_client_pais(int id)
 {
@@ -167,10 +172,11 @@ void view_client_pais(int id)
 }
 void change_client_pais(int id)
 {
-    char *data;
+    char data;
     printf("Escribe el pais del cliente: ");
-    scanf("%s", data);
-    clients[id].pais = strdup(data);
+    getchar();
+    scanf("%[^\n]", &data);
+    clients[id].pais = strdup(&data);
 }
 void init_change_client_menu()
 {
@@ -210,41 +216,32 @@ void change_client_options(int id, int field)
     case 1:
         view_client_name(id);
         change_client_name(id);
-        change_client_menu(id);
     case 2:
         view_client_email(id);
         change_client_email(id);
-        view_client_email(id);
-        change_client_menu(id);
     case 3:
         view_client_calle(id);
         change_client_calle(id);
-        change_client_menu(id);
     case 4:
         view_client_number(id);
         change_client_number(id);
-        change_client_menu(id);
     case 5:
         view_client_cp(id);
         change_client_cp(id);
-        change_client_menu(id);
     case 6:
         view_client_municipio(id);
         change_client_municipio(id);
-        change_client_menu(id);
     case 7:
         view_client_estado(id);
         change_client_estado(id);
-        change_client_menu(id);
     case 8:
         view_client_pais(id);
         change_client_pais(id);
-        change_client_menu(id);
     case 9:
         create_menu();
     default:
-        break;
-    }
+        change_client_menu(id);
+    };
 }
 void create_file_complete()
 {
@@ -497,7 +494,7 @@ void select_menu_option(int option)
     */
         exit(-1);
     default:
-        break;
+        create_menu();
     };
 }
 void create_search_options()
@@ -512,24 +509,16 @@ void create_search_options()
 }
 int menu()
 {
-    bool valid_option = false;
     int option;
-    while (!valid_option)
-    {
-        printf("MENU\n");
-        printf(" 1.  Alta de clientes\n");
-        printf(" 2.  Cambio de cliente\n");
-        printf(" 3.  Borrado de clientes\n");
-        printf(" 4.  Reportes de clientes\n");
-        printf(" 5.  Localizar cliente\n");
-        printf(" 6.  Manual de Usuario\n");
-        printf(" 7.  Salir\n");
-        scanf("%i", &option);
-        if (option >= 1 && option <= 7)
-        {
-            valid_option = true;
-        }
-    }
+    printf("MENU\n");
+    printf(" 1.  Alta de clientes\n");
+    printf(" 2.  Cambio de cliente\n");
+    printf(" 3.  Borrado de clientes\n");
+    printf(" 4.  Reportes de clientes\n");
+    printf(" 5.  Localizar cliente\n");
+    printf(" 6.  Manual de Usuario\n");
+    printf(" 7.  Salir\n");
+    scanf("%i", &option);
     return option;
 }
 void create_menu()
