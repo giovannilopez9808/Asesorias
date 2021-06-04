@@ -20,6 +20,19 @@ def count_values(data, class_values, delta):
     return count
 
 
+def autolabel(rects):
+    """Attach a text UV_values above each bar in *rects*, displaying its height."""
+    for i, rect in enumerate(rects):
+        height = rect.get_height()
+        ax.annotate("{:.0f}".format(height),
+                    xy=(rect.get_x() + rect.get_width() / 2, height),
+                    xytext=(0, 3),  # 3 points vertical offset
+                    textcoords="offset points",
+                    ha='center',
+                    va='bottom',
+                    fontsize=9)
+
+
 data = pd.DataFrame([138, 146, 168, 146, 161, 164, 158, 126, 173, 144,
                      145, 150, 140, 138, 142, 135, 132, 147, 176, 165,
                      147, 142, 144, 136, 163, 135, 150, 125, 148, 135,
@@ -37,12 +50,14 @@ class_value = obtain_class(min_value,
                            R_c)
 count = count_values(data, class_value, R_c)
 class_value = [value+R_c//2 for value in class_value]
-plt.bar(class_value, count,
-        width=R_c//2)
-plt.grid(ls="--",
-         axis="y",
-         color="#000000")
-plt.xticks(class_value)
-plt.yticks(np.arange(0, 13, 1))
-plt.ylim(0, 12)
+fig, ax = plt.subplots()
+bars = ax.bar(class_value, count,
+              width=R_c//2)
+autolabel(bars)
+ax.grid(ls="--",
+        axis="y",
+        color="#000000")
+ax.set_xticks(class_value)
+ax.set_yticks(np.arange(0, 13, 1))
+ax.set_ylim(0, 12)
 plt.savefig("../Graphics/Histogram_1.png")
