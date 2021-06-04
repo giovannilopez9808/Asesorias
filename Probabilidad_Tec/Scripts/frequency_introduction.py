@@ -10,21 +10,34 @@ def obtain_class(min_value, max_value, delta):
     return class_values
 
 
-def count_values(data, class_values, delta):
-    count = []
+def frecuency_values(data, class_values, delta):
+    frecuency = []
     for value in class_value:
         data_copy = data.copy()
         data_copy = data_copy[data_copy >= value]
         data_copy = data_copy[data_copy <= value+delta-1]
-        count.append(data_copy.count()[0])
-    return count
+        frecuency.append(data_copy.count()[0])
+    return np.array(frecuency)
 
 
-def autolabel(rects):
+def plot_histogram(class_list, frecuency, width, path, name, format):
+    fig, ax = plt.subplots()
+    bars = ax.bar(class_list, frecuency,
+                  width=width//2)
+    autolabel(bars, format, ax)
+    ax.grid(ls="--",
+            axis="y",
+            color="#000000")
+    ax.set_xticks(class_list)
+    plt.savefig("{}{}".format(path,
+                              name))
+
+
+def autolabel(rects, format, ax):
     """Attach a text UV_values above each bar in *rects*, displaying its height."""
     for i, rect in enumerate(rects):
         height = rect.get_height()
-        ax.annotate("{:.0f}".format(height),
+        ax.annotate(format.format(height),
                     xy=(rect.get_x() + rect.get_width() / 2, height),
                     xytext=(0, 3),  # 3 points vertical offset
                     textcoords="offset points",
@@ -48,16 +61,18 @@ print(R, N, k, R_c)
 class_value = obtain_class(min_value,
                            max_value,
                            R_c)
-count = count_values(data, class_value, R_c)
+frecuency = frecuency_values(data, class_value, R_c)
+frecuency_relative = 100*frecuency/N
 class_value = [value+R_c//2 for value in class_value]
-fig, ax = plt.subplots()
-bars = ax.bar(class_value, count,
-              width=R_c//2)
-autolabel(bars)
-ax.grid(ls="--",
-        axis="y",
-        color="#000000")
-ax.set_xticks(class_value)
-ax.set_yticks(np.arange(0, 13, 1))
-ax.set_ylim(0, 12)
-plt.savefig("../Graphics/Histogram_1.png")
+plot_histogram(class_value,
+               frecuency,
+               R_c,
+               "../Graphics/",
+               "Histogram_1",
+               "{:.0f}")
+plot_histogram(class_value,
+               frecuency_relative,
+               R_c,
+               "../Graphics/",
+               "Histogram_2",
+               "{:.2f}")

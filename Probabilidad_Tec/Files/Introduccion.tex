@@ -1,8 +1,7 @@
-\section{Introducción}
-\subsection{Tipos de variables}
-\subsubsection{Discretas}
+\section{Tipos de variables}
+\subsection{Discretas}
 En matemáticas, la palabra discreto hace referencia a aquellos objetos que estan contenido en los numeros enteros (e.g. 1,2,-1,0,3). Lo más usual es solo usar el conjunto de los naturales, pero en algunas ocasiones es necesario usar los enteros negativos. En estadistica, este tipo de variable
-\subsubsection{Continuas}
+\subsection{Continuas}
 Las variables continuas usan los números reales para su representación.
 \subsection{Diferencias en los usos de variables discretas o continuas}
 La diferencia entre el uso de cada tipo de variable en estadistica esta concentrada en la definición de cada objeto matemático como lo es la esperanza, el promedio, la varianza, etc. Por ejemplo, La probabilidad es calculada de la siguiente manera:\\
@@ -123,3 +122,37 @@ Para realizar la gráfica de estas frecuencias existen varias maneras, ya sea de
     \includegraphics[scale=0.75]{Graphics/Histogram_1.png}
     \caption{Histograma obtenido a partir de los datos de la tabla \ref{table:valores_aleatorios_introduccion}}
 \end{figure}
+
+\subsection{Frecuencias relativas}
+Otra manera de mostras las frecuencias es por medio de porcentajes, esto es debido a que es más facil ponderar o visualizar la distribución de los datos por medio del porcentaje que representa cada clase. El calculo de la frecuencia relativa para cada clase $c_i$ esta definida de la siguiente manera:
+\begin{equation*}
+    f_r= \frac{f_i}{N}
+\end{equation*}
+donde $f_i$ es la frecuencia de la clase i. Realizando el calculo de las frecuencias relativas con los datos de la tabla \ref{table:valores_aleatorios_introduccion} se obtiene la gráfica \ref{fig:relative_frecuency}:
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.75]{Graphics/Histogram_2.png}
+    \caption{Histograma obtenido a partir de las frecuencias relativas de la tabla \ref{table:valores_aleatorios_introduccion}}
+    \label{fig:relative_frecuency}
+\end{figure}
+
+\section{Propiedades de la suma}
+\begin{propiedad}
+    Sea $C\in \mathbb{R}$, entonces:
+    \begin{equation*}
+        \sum_{i=1}^N C = NC
+    \end{equation*}
+\end{propiedad}
+\begin{propiedad}
+    Sea $C\in \mathbb{R}$ y $\chi = \{\chi_i\}$, entonces:
+    \begin{equation*}
+        \sum_{i=1}^N C\chi_i = C \sum_{i=1}^N \chi
+    \end{equation*}
+\end{propiedad}
+\begin{propiedad}
+    Sea $\alpha = \{\alpha_i\}$, $\beta = \{\beta_i\}$, $\gamma = \{\gamma_i\}$, entonces
+    \begin{equation*}
+        \sum_{i=0}^N \left(\alpha_i + \beta_i + \gamma_i \right) =
+        \sum_{i=0}^N \alpha_i + \sum_{i=0}^N \beta_i  +\sum_{i=0}^N \gamma_i
+    \end{equation*}
+\end{propiedad}
