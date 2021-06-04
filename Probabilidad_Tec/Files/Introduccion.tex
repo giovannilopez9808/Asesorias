@@ -76,11 +76,11 @@ Siguiendo el estandar para calcular la tabla de frecuencias sobre los datos de l
     \end{align*}
 \end{minipage}
 \begin{minipage}{0.25\linewidth}
-    \begin{align*}
-        R_c & = \frac{57}{7} \\
-            & = 8            \\
-            & =9             \\
-    \end{align*}
+    \begin{align}
+        R_c & = \frac{57}{7} \nonumber      \\
+            & = 8            \nonumber      \\
+            & =9             \label{eq:r_c}
+    \end{align}
 \end{minipage}
 Por lo tanto, las clases seran definidas por los siguientes intervalos:
 \begin{table}[H]
@@ -139,20 +139,20 @@ donde $f_i$ es la frecuencia de la clase i. Realizando el calculo de las frecuen
 \section{Propiedades de la suma}
 \begin{propiedad}
     Sea $C\in \mathbb{R}$, entonces:
-    \begin{equation*}
+    \begin{equation}
         \sum_{i=1}^N C = NC
-    \end{equation*}
+    \end{equation}
 \end{propiedad}
 \begin{propiedad}
     Sea $C\in \mathbb{R}$ y $\chi = \{\chi_i\}$, entonces:
-    \begin{equation*}
+    \begin{equation}
         \sum_{i=1}^N C\chi_i = C \sum_{i=1}^N \chi
-    \end{equation*}
+    \end{equation}
 \end{propiedad}
 \begin{propiedad}
     Sea $\alpha = \{\alpha_i\}$, $\beta = \{\beta_i\}$, $\gamma = \{\gamma_i\}$, entonces
-    \begin{equation*}
+    \begin{equation}
         \sum_{i=0}^N \left(\alpha_i + \beta_i + \gamma_i \right) =
         \sum_{i=0}^N \alpha_i + \sum_{i=0}^N \beta_i  +\sum_{i=0}^N \gamma_i
-    \end{equation*}
+    \end{equation}
 \end{propiedad}
