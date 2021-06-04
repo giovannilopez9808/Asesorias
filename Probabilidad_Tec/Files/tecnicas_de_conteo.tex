@@ -1,0 +1,75 @@
+\section{Técnica de conteo}
+\subsection{Notación factorial}
+Se llama factorial a la operación de multiplicar todos los numeros enteros anteriores al número n, por definicón $0!=1$.
+\begin{equation*}
+    n!=n(n-1)(n-2)(n-3)\dots(1)(0!)
+\end{equation*}
+\subsection{Permutaciones}
+La manera de ordenar un conjunto de objetos se le conoce como permutación. El número de permutaciones de $n$ objetos diferentes tomando $r$ al mismo tiempo se calcula como:
+\begin{equation*}
+    P\left(\begin{matrix}
+            n \\
+            r\end{matrix}\right) = \frac{n!}{(n-r)!} \qquad \text{donde} \qquad n\geq r
+\end{equation*}
+\begin{ejemplo}
+    Encontrar el número total de permutaciones del conjunto de letras $\{a,b,c,d\}$ tomadas:
+    \begin{itemize}
+        \item tres a la vez
+              \begin{align*}
+                  P\left(\begin{matrix}
+                          4 \\
+                          3
+                      \end{matrix}\right) & = \frac{4!}{(4-3)!} \\
+                                                          & = \frac{4!}{1!}     \\
+                                                          & = 4!                \\
+                                                          & = 24
+              \end{align*}
+        \item dos a la vez
+              \begin{align*}
+                  P\left(\begin{matrix}
+                          4 \\
+                          2
+                      \end{matrix}\right) & = \frac{4!}{(4-2)!}   \\
+                                                          & = \frac{4!}{2!}       \\
+                                                          & = \frac{4(3)(2!)}{2!} \\
+                                                          & = 4(3)                \\
+                                                          & =12
+              \end{align*}
+    \end{itemize}
+\end{ejemplo}
+\begin{teorema}
+    El número de permutaciones diferentes de n objetos de los cualess $n_1$ son iguales, $n_2$ son iguales, $\dots$, $n_k$ son iguales es:
+    \begin{equation*}
+        P\left(\begin{matrix}
+                n \\
+                n_1,n_2,\dots,n_k
+            \end{matrix}\right) = \frac{n!}{n_1!n_2!\dots n_k!}
+    \end{equation*}
+\end{teorema}
+\begin{ejemplo}
+    ¿De cuantas maneras distintas pueden situarse diez sillas en fila, si, cuatro son negras tres color verde y tres rojas?
+    \begin{align*}
+        P\left(\begin{matrix}
+                10 \\
+                4,3,3
+            \end{matrix}\right) & = \frac{10!}{4!3!3!}             \\
+                                                & = \frac{10(9)(8)(7)(6)(5)}{3!3!} \\
+                                                & = \frac{10(9)(8)(7)(5)}{3!}      \\
+                                                & = 10(3)(4)(7)(5)                 \\
+                                                & =4200
+    \end{align*}
+\end{ejemplo}
+\begin{teorema}
+    El número de permutaciones de n objetos distitnos en un circulo es $(n-1)!$
+\end{teorema}
+\subsection{Combinaciones}
+Una seleccion de n objetos en tomando r, sin tener en cuenta el orden, se le conoce como combinación y se calcula de la siguiente manera:
+\begin{equation*}
+    C\left(\begin{matrix}
+            n \\
+            r
+        \end{matrix}\right) = \frac{P\left(\begin{matrix}
+            n \\
+            r
+        \end{matrix}\right)}{r!} = \frac{n!}{r!(n-r)!}
+\end{equation*}
