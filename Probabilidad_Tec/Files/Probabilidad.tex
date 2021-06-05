@@ -1,0 +1,220 @@
+\section{Probabilidad}
+\subsection{Axiomas}
+\begin{enumerate}
+    \item La probabilidad de un suceso debe de estar contenida en el rango $[0,1]$.
+          \begin{equation*}
+              0 \leq P(A)\leq 1
+          \end{equation*}
+    \item La probabilidad del conjunto vacio es 0.
+          \begin{equation*}
+              P(\emptyset)=0
+          \end{equation*}
+    \item La probabilidad del universo es 1.
+          \begin{equation*}
+              P(U)=1
+          \end{equation*}
+\end{enumerate}
+\subsection{Eventos mutuamente excluyentes}
+\begin{definicion}
+    Sea A y B dos eventos, se dice que son mutuamente excluyentes si:
+    \begin{equation*}
+        A \cap B = \emptyset
+    \end{equation*}
+    $\cap$: Intersección, lo que quiere decir que A y B no tienen eventos en común, por lo tanto no pueden pasar al mismo tiempo.
+\end{definicion}
+\subsection{Addición de eventos}
+La probabilidad que sucedan A y B es:
+\begin{equation*}
+    P(A\cup B) = P(A)+P(B) - P(A\cap B)
+\end{equation*}
+si A y B son eventos mutuamente excluyentes entonces:
+\begin{align*}
+    P(A\cup B) & = P(A)+P(B) - P(A\cap B) \\
+               & =P(A)+P(B)-P(\emptyset)  \\
+               & = P(A)+P(B)-0            \\
+    P(A\cup B) & = P(A)+P(B)
+\end{align*}
+\subsection{Probabilidad condicional}
+\begin{definicion}
+    La probabilidad que suceda B dado que A ya sucedio, se lee como la probabilidad de B dado A y se denota como $P(B|A)$, y se calcula de la siguiente manera:
+    \begin{equation*}
+        P(B|A)= \frac{P(A\cap B)}{P(A)} \qquad \text{si} \qquad P(A)>0
+    \end{equation*}
+\end{definicion}
+Si A y B son dos eventos independientes entonces:
+\begin{align*}
+    P(B|A) & = \frac{P(A\cap B)}{P(A)} \\
+           & = \frac{P(A)P(B)}{P(A)}   \\
+           & = P(B)
+\end{align*}
+\begin{ejemplo}
+    La probabilidad de que un vuelo programado en forma regular salga a tiempo es $P(D)=0.83$, la probabilidad de que llegue a tiempo es $P(A)=0.92$ y la probabilidad de que salga y llegue a tiempo es $P(D\cup A)=0.78$. Encuentre la probabilidad de que un avión:
+    \begin{itemize}
+        \item Llegue a tiempo dado que salió a tiempo.
+              \begin{align*}
+                  P(A|D) & = \frac{P(A\cap D)}{P(D)} \\
+                         & = \frac{0.78}{0.83}       \\
+                         & = 0.94                    \\
+                         & = 94\%
+              \end{align*}
+        \item Haya salido a tiempo dado que llego a tiempo.
+              \begin{align*}
+                  P(D|A) & = \frac{P(A\cap D)}{P(D)} \\
+                         & = \frac{0.78}{0.92}       \\
+                         & = 0.847                   \\
+                         & = 84.7\%
+              \end{align*}
+    \end{itemize}
+\end{ejemplo}
+\begin{ejemplo}
+    Encuentre la probabilidad de elegir al azar y en forma sucesiva 4 litros buenos de leche de un refrigerador que contiene 20 litros de los cuales 5 litros están en mal estado.Sean: \begin{itemize}
+        \item $A_1$: El primer litro este en buen estado.
+        \item $A_2$: El segundo litro este en buen estado.
+        \item $A_3$: El tercero litro este en buen estado.
+        \item $A_4$: El cuarto litro este en buen estado.
+    \end{itemize}
+    Entonces:
+    \begin{align*}
+        P(A_1 \cup A_2 \cup A_3 \cup A_4) & = P(A_1)P(A_2|A_1)P(A_3|A_2,A_1)P(A_4|A_3,A_2,A_1)                                                         \\
+                                          & = \left(\frac{15}{20}\right)\left(\frac{14}{19}\right)\left(\frac{13}{18}\right)\left(\frac{12}{17}\right) \\
+                                          & = \frac{91}{323}
+    \end{align*}
+\end{ejemplo}
+\subsection{Probabilidad total para varios eventos}
+\begin{definicion}
+    Sean $A_1,A_2,\dots,A_k$ eventos, se dice que son exhaustivos si
+    \begin{equation*}
+        A_1 \cup A_2 \cup \dots \cup A_k =U
+    \end{equation*}
+\end{definicion}
+Sean $A_1,A_2,\dots,A_k$ eventos mutuamente excluyentes y exhaustivos, entonces
+\begin{equation*}
+    P(B)=P(B\cup A_1) P(B\cup A_2)+P(B\cup)+\dots+P(B\cup A_k)
+\end{equation*}
+\begin{ejemplo}
+    Una empresa consultora renta automóviles de tres agencias, 20\% de la agencia D, 20\% de la agencia E y 60\% de la agencia F. Si 10\% de los autos de D, 12\% de los autos de E y 4\% de los autos de F tienen neumáticos en mal estado. ¿Cuál es la probabilidad de que la empresa reciba autos con neumáticos en mal estado?
+    Sean los eventos:
+    \begin{itemize}
+        \item $A_1$: Automóvil rentado proviene de la agencia D
+        \item $A_2$: Automóvil rentado proviene de la agencia E
+        \item $A_3$: Automóvil rentado proviene de la agencia F
+        \item B: Automóvil rentado tiene neumáticos en mal estado.
+    \end{itemize}
+    \begin{align*}
+        P(B) & =P(B\cup A_1)+P(B\cup A_2)+P(B\cup A_3)       \\
+             & =P(A_1)P(B|A_1)+P(A_2)P(B|A_2)+P(A_3)P(B|A_3) \\
+             & =(0.2)(0.1)+(0.2)(0.12)+(0.6)(0.04)           \\
+             & =0.068
+    \end{align*}
+\end{ejemplo}
+\begin{ejemplo}
+    Supongamos que 5\% de todos los hombres y 0.25\% de todas las mujeres son daltónicas. Una persona elegida al azar resulta ser daltónica. ¿Cuál es la probabilidad de que esta persona sea hombre? (se considera que la cantidad de hombres y mujeres es igual). Sean los eventos:
+    \begin{itemize}
+        \item $A_1$: La persona elegida sea un hombre
+        \item $A_2$: La persona elegida sea una mujer
+        \item B: La persona elegida es daltónica.
+    \end{itemize}
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{lcccc}
+            \hline
+            Eventos & $P(A_i)$ & $P(B|A_i)$ & $P(B\cup A_i)$ & $P(A_i|B)$ \\ \hline
+            $A_1$   & 0.5      & 0.05       &                &            \\
+            $A_2$   & 0.5      & 0.0025     &                &            \\
+            Total   &          & 0.02625    &                             \\ \hline
+        \end{tabular}
+        \caption{Información del ejemplo}
+    \end{table}
+    Como se pregunta $P(A_1|B)$, entonces tendremos que calcular lo siguiente:
+    \begin{equation*}
+        P(A_1|B)= \frac{P(A_1 \cup B)}{P(B)}
+    \end{equation*}
+    como no tenemos cuanto es $P(B)$ lo tendremos que calcular de la siguiente manera:
+    \begin{equation*}
+        P(B)=P(A_1 \cup B) + P(A_2 \cup B)
+    \end{equation*}
+    calculando $P(A_1 \cup B)$ se obtiene que:
+    \begin{equation*}
+        P(A_1 \cup B) = P(A_1)P(B|A_1) =(0.5)(0.05)= 0.025
+    \end{equation*}
+    calculando $P(A_2 \cup B)$ se obtiene que:
+    \begin{equation*}
+        P(A_2 \cup B) = P(A_2)P(B|A_2) =(0.5)(0.025) =0.00125
+    \end{equation*}
+    entonces:
+    \begin{align*}
+        P(B) & =P(A_1)P(A_1 \cup B) + P(A_2)P(A_2 \cup B) \\
+             & = (0.025)+(0.00125)                        \\
+             & = 0.02625
+    \end{align*}
+    por lo tanto:
+    \begin{align*}
+        P(A_1|B) & = \frac{P(A_1 \cup B)}{P(B)} \\
+                 & = \frac{0.025}{0.02625}      \\
+                 & = 0.9523
+    \end{align*}
+\end{ejemplo}
+\subsection{Teorema de Bayes}
+El teorema de Bayes es una rama de la probabilidad condicional, nos permite conocer la probabilidad de una causa a partir de la probabilidad de la consecuencia.
+\begin{ejemplo}
+    En cierto sector metropolitano los grupos de ingresos bajos, medios y altos, constituyen el 20\%, 55\% y 25\% de la población respectivamente. Se sabe además que el 80\% del grupo de bajos ingresos se opone a un proyecto de ley que cursa actualmente en el congreso. Los porcentajes de los grupos medios y alto son 30 y 10\% respectivamente. Se selecciona al azar un individuo entre la población y se encuentra que se opone al proyecto de ley. ¿Cuál es la probabilidad de que la persona pertenezca al grupo de bajos ingresos? ¿Al de ingresos medios? ¿Al de altos ingresos?
+    Sean los eventos:
+    \begin{itemize}
+        \item $A_1$: Que la persona seleccionada pertenezca al grupo de ingresos bajos.
+        \item $A_2$: Que la persona seleccionada pertenezca al grupo de ingresos medios.
+        \item $A_3$: Que la persona seleccionada pertenezca al grupo de ingresos altos.
+        \item B: Que la persona elegida se opone al proyecto de ley.
+    \end{itemize}
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{lcc}\hline
+            Eventos & $P(A_i)$ & $P(B|A_i)$ \\ \hline
+            $A_1$   & 0.2      & 0.8        \\
+            $A_2$   & 0.55     & 0.3        \\
+            $A_3$   & 0.25     & 0.1        \\\hline
+        \end{tabular}
+        \caption{Información del ejemplo}
+    \end{table}
+    Lo que nos preguntan en la probabilidad de que sea del grupo $A_i$ dado que se opone a la propuesta, eso sería $P(A_i|B)$, entonces tendriamos que calcular:
+    \begin{equation*}
+        P(A_i|B)=\frac{P(A_i \cup B)}{P(B)}
+    \end{equation*}
+    calculando $P(B)$ se tiene lo siguiente:
+    \begin{equation*}
+        P(B) = P(B\cup A_1)+P(B\cup A_2)+P(B\cup A_3)
+    \end{equation*}
+    como no conocemos cuando valen $P(B\cup A_i)$, las calcularemos primero, eso seria:
+    \begin{align*}
+        P(B\cup A_1) & = P(A_1)P(B|A_1) = (0.2)(0.8)=0.160  \\
+        P(B\cup A_2) & = P(A_2)P(B|A_2) = (0.55)(0.3)=0.165 \\
+        P(B\cup A_3) & = P(A_3)P(B|A_3) = (0.25)(0.1)=0.025
+    \end{align*}
+    entonces:
+    \begin{align*}
+        P(B) & = P(B\cup A_1)+P(B\cup A_2)+P(B\cup A_3) \\
+             & = 0.160+0.165+0.025                      \\
+             & = 0.350
+    \end{align*}
+    por lo tanto:\\
+    \begin{minipage}{0.3\linewidth}
+        \begin{align*}
+            P(A_1|B) & =\frac{P(A_1 \cup B)}{P(B)} \\
+                     & = \frac{0.160}{0.350}       \\
+                     & = 0.4571
+        \end{align*}
+    \end{minipage}
+    \begin{minipage}{0.3\linewidth}
+        \begin{align*}
+            P(A_2|B) & =\frac{P(A_2 \cup B)}{P(B)} \\
+                     & = \frac{0.165}{0.350}       \\
+                     & = 0.4714
+        \end{align*}
+    \end{minipage}
+    \begin{minipage}{0.3\linewidth}
+        \begin{align*}
+            P(A_3|B) & =\frac{P(A_3 \cup B)}{P(B)} \\
+                     & = \frac{0.025}{0.350}       \\
+                     & = 0.0714
+        \end{align*}
+    \end{minipage}
+\end{ejemplo}
