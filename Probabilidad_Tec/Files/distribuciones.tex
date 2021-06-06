@@ -1,0 +1,122 @@
+\section{Distribuciones de probabilidad}
+\subsection{Variables discretas}
+Reenunciando los axiomas de la probabilidad, se tiene que:\begin{enumerate}
+    \item $f(x)\geq 0$
+    \item $\sum f(x) = 1$
+    \item $P(\chi =x) = f(x)$
+\end{enumerate}
+donde $f$ es la distribución de probabilidad.
+\subsection{Variables continuas}
+Reenunciando los axiomas de la probabilidad, se tiene que:\begin{enumerate}
+    \item $f(x)\geq 0 \forall x$
+    \item $\int\limits_{-\infty}^\infty f(x)dx=1$
+    \item $P(a\le x \leq b) = \int\limits_a^b f(x)dx $
+\end{enumerate}
+donde $f$ es la distribución de probabilidad.
+\begin{ejemplo}
+    Una variable aleatoria contiua $x\in [1,3]$, tiene una función de densidad dada por $f(x)=\frac{1}{2}$\begin{itemize}
+        \item Muestre que el área bajo la curva es igual a 1. (Demostrar que cumple con el primer axioma de la probabilidad)
+              \begin{align*}
+                  \int\limits_{-\infty}^\infty f(x)dx & = \int\limits_{1}^3 f(x)dx        \\
+                                                      & = \int\limits_{1}^3 \frac{1}{2}dx \\
+                                                      & = \left.\frac{1}{2}x \right|_1^3  \\
+                                                      & = \frac{1}{2}\left(3-1\right)     \\
+                                                      & = \frac{1}{2}\left(2\right)       \\
+                                                      & = 1
+              \end{align*}
+        \item Encuentre $P(2\geq 2 x \geq 2.5)$.
+              \begin{align*}
+                  P(2\geq 2 x \geq 2.5) & =\int\limits_2^2.5 f(x) dx         \\
+                                        & =\int\limits_2^2.5 \frac{1}{2} dx  \\
+                                        & = \left.\frac{1}{2}x \right|_2^2.5 \\
+                                        & = \frac{1}{2}\left(2.5-2\right)    \\
+                                        & = \frac{1}{2}\left(0.5\right)      \\
+                                        & = \frac{1}{4}
+              \end{align*}
+        \item Encuentre $P(x\leq 1.6)$.
+              \begin{align*}
+                  P(x\leq 1.6) & =\int\limits_{-\infty}^{1.6} f(x) dx \\
+                               & =\int\limits_1^{1.6} \frac{1}{2} dx  \\
+                               & = \left.\frac{1}{2}x \right|_1^{1.6} \\
+                               & = \frac{1}{2}\left(1.6-1\right)      \\
+                               & = \frac{1}{2}\left(0.6\right)        \\
+                               & = \frac{3}{10}
+              \end{align*}
+    \end{itemize}
+\end{ejemplo}
+\begin{ejemplo}
+    Sea $f(x)=Cx$ una distribución de probabilidad donde $x\in [3,5]$. Calcular el valor de C.\\
+    Como se sabe que una función de probabilidad debe de cumplir que al integrar en todo el el espacio este valor debe de ser 1 (normalización), entonces:
+    \begin{align*}
+        \int\limits_{-\infty}^{\infty} f(x) dx & = 1            \\
+        \int\limits_{3}^{5} Cx dx              & = 1            \\
+        \left. \frac{C}{2} x^2\right|_3^5      & = 1            \\
+        \frac{C}{2}\left(5^2-3^2\right)        & =1             \\
+        \frac{C}{2}\left(25-9\right)           & = 1            \\
+        C                                      & = \frac{2}{16} \\
+        C                                      & = \frac{1}{8}
+    \end{align*}
+\end{ejemplo}
+\section{Esperanza matemática}
+\begin{definicion}
+    Sea $x$ una variable aleatoria de una distribución de probabilidad $f$, entonces el valor esperado de $x$ es:
+    \begin{equation}
+        \mu = E(x) = \sum xf(x) \qquad \mu = E(x) = \int\limits_{-\infty}^\infty xf(x) dx
+    \end{equation}
+\end{definicion}
+\section{Varianza}
+\begin{definicion}
+    Sea $x$ una variable aleatoria de una distribución de probabilidad $f$ y esperanza matemática $\mu$, entonces la varianza es:
+    \begin{equation}
+        \sigma^2 = E(\left[x-\mu\right]^2)
+    \end{equation}
+\end{definicion}
+jugando con la definicion de la varianza llegamos a lo siguiente:
+\begin{align*}
+    \sigma^2 & = E(\left[x-\mu\right]^2)          \\
+             & = E(\left[x^2-2\mu x+\mu^2\right]) \\
+             & = E(x^2) - E(2\mu x ) + E(\mu^2)   \\
+             & = E(x^2) - 2\mu E(x) + \mu^2       \\
+             & = E(x^2) - 2 \mu^2 + \mu^2         \\
+             & = E(x^2) - \mu^2
+\end{align*}
+por lo tanto, la varianza matemática puede ser calculada como
+\begin{equation}
+    \sigma^2 = E(x^2) - \mu^2
+\end{equation}
+\begin{ejemplo}
+    Encuentre la media, la varianza y la desviación estándar de la variable aleatoria $x$ cuya distribución de probabilidad esta contenida en la tabla.
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{cc}\hline
+            $x$ & $f(x)$         \\ \hline
+            0   & $\dfrac{1}{8}$ \\
+            1   & $\dfrac{1}{4}$ \\
+            2   & $\dfrac{3}{8}$ \\
+            3   & $\dfrac{1}{4}$ \\ \hline
+        \end{tabular}
+    \end{table}
+    \begin{itemize}
+        \item Calculando $\mu$
+              \begin{align*}
+                  \mu & = E(x)                                                                                                    \\
+                      & = \sum_{i=0}^3 xf(x)                                                                                      \\
+                      & = 0\left(\frac{1}{8}\right)+1\left(\frac{1}{4}\right)+2\left(\frac{3}{8}\right)+3\left(\frac{1}{4}\right) \\
+                      & = 1.75
+              \end{align*}
+        \item Calculando la varianza
+              \begin{align*}
+                  \sigma^2 & = E(x^2) - \mu^2                                                                                                           \\
+                           & = 0^2\left(\frac{1}{8}\right)+1^2\left(\frac{1}{4}\right)+2^2\left(\frac{3}{8}\right)+3^2\left(\frac{1}{4}\right) - 1.75^2 \\
+                           & = 4-1.75^2
+                           & = 0.9375
+              \end{align*}
+        \item  Calculando la desviación estandar
+              \begin{align*}
+                  \sigma & = \sqrt{\sigma^2 } \\
+                         & = \sqrt{0.
+                      9375}                   \\
+                         & = 0.9682
+              \end{align*}
+    \end{itemize}
+\end{ejemplo}

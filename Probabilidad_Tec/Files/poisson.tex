@@ -1,0 +1,74 @@
+\section{Distribución de Poisson}
+\subsection{Definición}
+La distribución de probabilidad de variable aleatoria $x$ es:
+\begin{equation}
+    P(\chi=x) = \frac{e^{-\lambda}\lambda^x}{x!} \qquad x\in \mathbb{N}
+\end{equation}
+donde $\lambda$ es el número promedio de resultados que ocurren en el intervalo dado.
+Para esta definición se tiene que:
+\begin{itemize}
+    \item $\mu=\lambda$
+    \item $\sigma^2= \lambda$
+\end{itemize}
+\subsection{Propiedades}
+\begin{itemize}
+    \item El número de ocurrencias en cualquier intervalo es independiente del número que se tiene en otros intervalos.
+    \item La probabilidad de más de una ocurrencia en cualquier punto único es aproximadamente cero.
+    \item La probabilidad de una ocurrencia es la misma a través de todo el campo de observación.
+\end{itemize}
+\begin{ejemplo}
+    Un departamento de reparación de motores recibe un promedio de cinco llamadas de servicio por hora,¿ cual es la probabilidad que reciban tres llamadas en una hora?
+    \begin{align*}
+        P(X=3) & = \frac{e^{-5}5^3}{3!} \\
+               & = 0.14037
+    \end{align*}
+\end{ejemplo}
+\begin{ejemplo}
+    Si un banco recibe un promedio de 6 cheques falsos al día: ¿cuáles son las probabilidades de que reciba
+    \begin{itemize}
+        \item cuatro cheques falsos en un día cualquiera?
+              \begin{align*}
+                  P(X=4) & = \frac{e^{-6}6^4}{4!} \\
+                         & = 0.13385
+              \end{align*}
+        \item 10 cheques falsos en dos días consecutivos cualquiera?
+              \begin{align*}
+                  P(X=3) & = \frac{e^{-12}12^10}{10!} \\
+                         & = 0.10483
+              \end{align*}
+    \end{itemize}
+\end{ejemplo}
+\begin{ejemplo}
+    Supongamos que los defectos de la hilaza se pueden aproximar mediante unproceso Poisson con una media de 0.2 defectos/metro. Si se inspeccionan longitudes de 6 metros. Calcula la probabilidad de hallar menos de dos defectos.
+    \begin{align*}
+        P(x<2) & =P(x\leq 1)                                        \\
+               & = P(x=1)+P(x=0)                                    \\
+               & =\frac{e^{-1.2}1.2^1}{1!}+\frac{e^{-1.2}1.2^0}{0!} \\
+               & =0.3614+0.3011                                     \\
+               & = 0.6625
+    \end{align*}
+\end{ejemplo}
+\subsection{Aproximación de la distribución de Poisson a la distribución binomial}
+En determinadas circunstancias la distribución de Poisson se puede utilizar para aproximar probabilidades binomiales. La aproximación es más adecuada cuando la probabilidad del éxito p está cerca de 0. Para utilizar la aproximación, es necesario determinar solamente la media o el valor esperado de la distribución binomial. Este valor se utiliza como la media del proceso para la distribución de Poisson. Es decir, el promedio del proceso  $\mu$ es igual al promedio binomial np.
+\begin{ejemplo}
+    Se sabe que el 5\% de los libros encuadernados en cierto taller tienen encuadernación defectuosa. Calcula la probabilidad de que 2 de 100 libros terminados en este taller tengan una encuadernación defectuosa, utilizando:
+    \begin{itemize}
+        \item la fórmula para la distribución binomial.
+              \begin{align*}
+                  P(x) & = C\left(\begin{matrix}
+                          n \\
+                          x
+                      \end{matrix}\right) p^x (1-p)^{n-x}      \\
+                       & = C\left(\begin{matrix}
+                          100 \\
+                          2
+                      \end{matrix}\right) (0.05)^2 (0.95)^{98} \\
+                       & = 0.08118
+              \end{align*}
+        \item la aproximación de Poisson a la distribución binomial.
+              \begin{align*}
+                  P(x=2) & = \frac{e^{-5}5^2}{2!} \\
+                         & = 0.0842
+              \end{align*}
+    \end{itemize}
+\end{ejemplo}
