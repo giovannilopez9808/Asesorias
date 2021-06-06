@@ -1,0 +1,49 @@
+\section{Distribución binomial}
+\subsection{Propiedades}
+\begin{itemize}
+    \item El experimento consiste en n ensayos repetidos.
+    \item Cada ensayo proporciona un resultado que pueda clasificarse como éxito (x) o fracaso.
+    \item La probabilidad de éxito designa por $p$, permanece constante de un ensayo a otro La probabilidad de fracaso es por tanto igual a $q=1-p$.
+    \item Los ensayos son independientes.
+\end{itemize}
+\subsection{Definición}
+\begin{equation}
+    f(x) = C\left(\begin{matrix}
+            n \\
+            x
+        \end{matrix}\right) p^x (1-p)^{n-x}
+\end{equation}
+con esta definición se obtiene los siguientes resultados:
+\begin{align*}
+    \mu      & = np  \\
+    \sigma^2 & = npq
+\end{align*}
+\begin{ejemplo}
+    La probabilidad de que un presunto cliente escogido aleatoriamente haga una compra es de 0.20. Si un vendedor visita a 6 presuntos clientes, ¿cuál es la probabilidad de que haga exactamente 4 ventas?\\
+    La información que nos da este problema es $n=6$, $x=4$, $p=0.2$ , $q=0.8$, por lo tanto:
+    \begin{align*}
+        P(x=4) & = C\left(\begin{matrix}
+            6 \\
+            4
+        \end{matrix}\right) (0.2)^{4} (0.8)^{2} \\
+               & = \frac{6!}{4!(6-4)!} (0.2)^4 (0.8)^2                         \\
+               & = 15(0.0016)(0.64)                                            \\
+               & =0.01536
+    \end{align*}
+    ¿Cuál es la probabilidad de que el vendedor haga 4 o más ventas?
+    \begin{align*}
+        P(x\geq 4) & = P(x=4)+P(x=5)+P(x=6)                                                                                                                                                                \\
+                   & = C\left(\begin{matrix}
+            6 \\
+            4
+        \end{matrix}\right) (0.2)^{4} (0.8)^{2}+C\left(\begin{matrix}
+            6 \\
+            5
+        \end{matrix}\right) (0.2)^{5} (0.8)^{1}+C\left(\begin{matrix}
+            6 \\
+            6
+        \end{matrix}\right) (0.2)^{6} (0.8)^{0} \\
+                   & = 0.01536+0.001536+0.000064                                                                                                                                                           \\
+                   & = 0.1696
+    \end{align*}
+\end{ejemplo}
