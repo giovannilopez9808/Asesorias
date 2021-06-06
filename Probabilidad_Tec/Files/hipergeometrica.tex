@@ -1,0 +1,64 @@
+\section{Distribución hipergeométrica}
+\subsection{Definición}
+La distribución de probabilidad de la variable aleatoria hipergeométrica $x$, el número de éxitos en una muestra aleatoria de tamaño $n$, seleccionada de $N$ resultados de los cuales $K$ son éxitos y $N-K$ son fracasos es:
+\begin{equation}
+    P(x;N,n,K) = \frac{C\left(\begin{matrix}
+            K \\
+            x
+        \end{matrix}\right)C\left(\begin{matrix}
+            N-K \\
+            n-x
+        \end{matrix}\right)}{C\left(\begin{matrix}
+            N \\
+            n
+        \end{matrix}\right)} \qquad x \in \mathbb{N}
+\end{equation}
+\subsection{Propiedades}
+\begin{itemize}
+    \item Una muestra aleatoria de tamaño n se selecciona de N resultados.
+    \item K de los N resultados se pueden clasificar como éxitos y N-K como fracasos.
+\end{itemize}
+De la definición se obtiene los siguientes resultados:
+\begin{itemize}
+    \item $\mu=\frac{nK}{N}$
+    \item $\sigma^2= \left(\frac{N-K}{N-1}\right)\left(\frac{K}{N}\right)\left(1-\frac{K}{N}\right)n$
+\end{itemize}
+\begin{ejemplo}
+    Un cargamento de 20 grabadoras magnetofónicas contiene 5 defectuosas. Si 10 de ellas son aleatoriamente escogidas para revisión: ¿Cuál es la probabilidad de que dos estén defectuosas?\\
+    x=2, n=10, N=20, K=5
+    \begin{align*}
+        P(2;20,10,5) & =\frac{C\left(\begin{matrix}
+                K \\
+                x
+            \end{matrix}\right)C\left(\begin{matrix}
+                N-K \\
+                n-x
+            \end{matrix}\right)}{C\left(\begin{matrix}
+                N \\
+                n
+            \end{matrix}\right)}     \\
+                     & = \frac{C\left(\begin{matrix}
+                5 \\
+                2
+            \end{matrix}\right)C\left(\begin{matrix}
+                20-5 \\
+                10-2
+            \end{matrix}\right)}{C\left(\begin{matrix}
+                20 \\
+                10
+            \end{matrix}\right)}  \\
+                     & = \frac{C\left(\begin{matrix}
+                5 \\
+                2
+            \end{matrix}\right)C\left(\begin{matrix}
+                15 \\
+                8
+            \end{matrix}\right)}{C\left(\begin{matrix}
+                20 \\
+                10
+            \end{matrix}\right)} \\
+                     & = \frac{\frac{5!}{2!3!}\frac{15!}{8!7!}}{\frac{20!}{10!10!}}                                                                        \\
+                     & = \frac{10(6435)}{184756}                                                                                                           \\
+                     & = 0.3483
+    \end{align*}
+\end{ejemplo}
