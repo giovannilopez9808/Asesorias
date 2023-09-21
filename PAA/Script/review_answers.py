@@ -10,7 +10,7 @@ parameters = {
     "path data": "Answers/",
     "file form": "Prueba.csv",
     # "file answers": "PAA_1_answers.csv",
-    "file answers": "Prueba1_3_answers.csv"
+    "file answers": "Prueba1_4_answers.csv"
 }
 columns = ["Right", "Wrong", "NA"]
 answers_form = pd.read_csv(parameters["file form"],
