@@ -1,3 +1,4 @@
+from argparse import ArgumentParser
 import pandas as pd
 
 
@@ -6,11 +7,24 @@ def clean_answers(data: pd.DataFrame):
     return data
 
 
+parser = ArgumentParser()
+parser.add_argument(
+    "--test",
+    required=True,
+    type=str
+)
+parser.add_argument(
+    "--part",
+    required=True,
+    type=str,
+)
+args = parser.parse_args()
+filename = f"Prueba{args.test}_{args.part}_answers.csv"
 parameters = {
     "path data": "Answers/",
     "file form": "Prueba.csv",
     # "file answers": "PAA_1_answers.csv",
-    "file answers": "Prueba1_3_answers.csv"
+    "file answers": filename,
 }
 columns = ["Right", "Wrong", "NA"]
 answers_form = pd.read_csv(parameters["file form"],
