@@ -1,4 +1,5 @@
 from argparse import ArgumentParser
+from os.path import join
 import pandas as pd
 
 
@@ -19,19 +20,29 @@ parser.add_argument(
     type=str,
 )
 args = parser.parse_args()
-filename = f"Prueba{args.test}_{args.part}_answers.csv"
+if args.test != "0":
+    filename = f"Prueba{args.test}_{args.part}_answers.csv"
+else:
+    filename = "PAA_1_answers.csv"
 parameters = {
-    "path data": "Answers/",
+    "path data": "Answers",
     "file form": "Prueba.csv",
-    # "file answers": "PAA_1_answers.csv",
     "file answers": filename,
 }
 columns = ["Right", "Wrong", "NA"]
+answers_form = join(
+    parameters["file form"]
+)
 answers_form = pd.read_csv(parameters["file form"],
                            index_col=1)
-answers = pd.read_csv("{}{}".format(parameters["path data"],
-                                    parameters["file answers"]),
-                      index_col=0)
+answers = join(
+    parameters["path data"],
+    parameters["file answers"]
+)
+answers = pd.read_csv(
+    answers,
+    index_col=0
+)
 answers_form = answers_form.fillna("NA")
 answers = answers.fillna("NA")
 answers_form = clean_answers(answers_form)
