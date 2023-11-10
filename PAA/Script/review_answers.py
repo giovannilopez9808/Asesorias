@@ -22,6 +22,7 @@ parser.add_argument(
 args = parser.parse_args()
 if args.test != "0":
     filename = f"Prueba{args.test}_{args.part}_answers.csv"
+    print(filename)
 else:
     filename = "PAA_1_answers.csv"
 parameters = {
